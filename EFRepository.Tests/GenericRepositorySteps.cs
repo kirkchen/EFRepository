@@ -103,6 +103,14 @@ namespace EFRepository.Tests
             this.DataList = this.Repository.GetList(this.Condition);
         }
 
+        [When(@"I use generic repository get data from database with conditon")]
+        public void WhenIUseGenericRepositoryGetDataFromDatabaseWithConditon()
+        {
+            this.DataItem = this.Repository.Get(this.Condition);
+
+            this.DataList = new List<TestData>() { this.DataItem };
+        }
+
         [Then(@"database should exists test datas")]
         public void ThenDatabaseShouldExistsTestDatas(Table table)
         {

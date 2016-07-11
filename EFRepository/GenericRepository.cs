@@ -91,6 +91,19 @@ namespace EFRepository
         }
 
         /// <summary>
+        /// Gets the specified where.
+        /// </summary>
+        /// <param name="where">The where.</param>
+        /// <returns>data</returns>
+        public TEntity Get(Expression<Func<TEntity, bool>> condition)
+        {
+            var query = this.DbContext.Set<TEntity>()
+                                      .Where(condition);
+
+            return query.FirstOrDefault();
+        }
+
+        /// <summary>
         /// Saves the changes.
         /// </summary>
         /// <returns>the count of effected rows</returns>

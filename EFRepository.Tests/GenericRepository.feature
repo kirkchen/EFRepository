@@ -56,3 +56,14 @@ Scenario: Get data from database should be success
 	Then the data list I get should be
 		| Id | Content    |
 		| 1  | TestData   |		
+
+Scenario: Get data from database with condition content should contains "2" should be success
+	Given database has test datas
+		| Id | Content    |
+		| 1  | TestData   |
+		| 2  | TestData 2 |
+	And test datas content field should contains "2"
+	When I use generic repository get data from database with conditon
+	Then the data list I get should be
+		| Id | Content    |
+		| 2  | TestData 2 |	

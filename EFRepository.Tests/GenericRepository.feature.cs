@@ -253,6 +253,45 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Get data from database with condition content should contains \"2\" should be succe" +
+            "ss")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GenericRepository")]
+        public virtual void GetDataFromDatabaseWithConditionContentShouldContains2ShouldBeSuccess()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get data from database with condition content should contains \"2\" should be succe" +
+                    "ss", ((string[])(null)));
+#line 60
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content"});
+            table11.AddRow(new string[] {
+                        "1",
+                        "TestData"});
+            table11.AddRow(new string[] {
+                        "2",
+                        "TestData 2"});
+#line 61
+ testRunner.Given("database has test datas", ((string)(null)), table11, "Given ");
+#line 65
+ testRunner.And("test datas content field should contains \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 66
+ testRunner.When("I use generic repository get data from database with conditon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content"});
+            table12.AddRow(new string[] {
+                        "2",
+                        "TestData 2"});
+#line 67
+ testRunner.Then("the data list I get should be", ((string)(null)), table12, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

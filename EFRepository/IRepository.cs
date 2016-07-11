@@ -33,7 +33,7 @@ namespace EFRepository
         /// </summary>
         /// <param name="where">The where.</param>
         /// <returns>data list</returns>
-        IEnumerable<TEntity> GetList(Expression<Func<TEntity, bool>> where);
+        IEnumerable<TEntity> GetList(Expression<Func<TEntity, bool>> condition);
 
         /// <summary>
         /// Gets the specified identifier.
@@ -42,6 +42,13 @@ namespace EFRepository
         /// <param name="id">The identifier.</param>
         /// <returns>data</returns>
         TEntity Get(object id);
+
+        /// <summary>
+        /// Gets the specified where.
+        /// </summary>
+        /// <param name="where">The where.</param>
+        /// <returns>data</returns>
+        TEntity Get(Expression<Func<TEntity, bool>> condition);
 
         /// <summary>
         /// Saves the changes.
