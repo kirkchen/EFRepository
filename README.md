@@ -44,7 +44,7 @@ Not yet implemented.
         - [x] Get by id
         - [x] Get with condition
         - [x] Update
-        - [ ] Delete
+        - [x] Delete
         - [ ] Support generic identity
     - [ ] Hooks Supports
         - [ ] Soft delete
