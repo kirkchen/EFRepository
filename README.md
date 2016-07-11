@@ -39,7 +39,7 @@ Not yet implemented.
     - [ ] Basic operation
         - [x] Add
         - [x] Add range
-        - [ ] Get list
+        - [x] Get list
         - [ ] Get list with condition
         - [ ] Get by id
         - [ ] Get with condition
