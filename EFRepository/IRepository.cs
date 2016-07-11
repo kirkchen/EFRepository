@@ -1,4 +1,6 @@
-﻿namespace EFRepository
+﻿using System.Collections.Generic;
+
+namespace EFRepository
 {
     /// <summary>
     /// IRepository
@@ -11,6 +13,12 @@
         /// </summary>
         /// <param name="data">The data.</param>
         void Add(TEntity data);
+
+        /// <summary>
+        /// Adds the range.
+        /// </summary>
+        /// <param name="datalist">The datalist.</param>
+        void AddRange(IEnumerable<TEntity> datalist);
 
         /// <summary>
         /// Saves the changes.
