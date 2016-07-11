@@ -77,6 +77,20 @@ namespace EFRepository
         }
 
         /// <summary>
+        /// Gets the specified identifier.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
+        /// <param name="id">The identifier.</param>
+        /// <returns>data</returns>
+        public virtual TEntity Get(object id)
+        {
+            var query = this.DbContext.Set<TEntity>()
+                                      .Find(id);
+
+            return query;
+        }
+
+        /// <summary>
         /// Saves the changes.
         /// </summary>
         /// <returns>the count of effected rows</returns>

@@ -218,6 +218,41 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Get data from database should be success")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GenericRepository")]
+        public virtual void GetDataFromDatabaseShouldBeSuccess()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get data from database should be success", ((string[])(null)));
+#line 50
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content"});
+            table9.AddRow(new string[] {
+                        "1",
+                        "TestData"});
+            table9.AddRow(new string[] {
+                        "2",
+                        "TestData 2"});
+#line 51
+ testRunner.Given("database has test datas", ((string)(null)), table9, "Given ");
+#line 55
+ testRunner.When("I use generic repository get data from database by id \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content"});
+            table10.AddRow(new string[] {
+                        "1",
+                        "TestData"});
+#line 56
+ testRunner.Then("the data list I get should be", ((string)(null)), table10, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

@@ -89,6 +89,14 @@ namespace EFRepository.Tests
             this.DataList = this.Repository.GetList();
         }
 
+        [When(@"I use generic repository get data from database by id ""(.*)""")]
+        public void WhenIUseGenericRepositoryGetDataFromDatabaseById(int id)
+        {
+            this.DataItem = this.Repository.Get(id);
+
+            this.DataList = new List<TestData>() { this.DataItem };
+        }
+
         [When(@"I use generic repository get data list with condition from database")]
         public void WhenIUseGenericRepositoryGetDataListWithConditionFromDatabase()
         {

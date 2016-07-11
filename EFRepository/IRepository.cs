@@ -36,6 +36,14 @@ namespace EFRepository
         IEnumerable<TEntity> GetList(Expression<Func<TEntity, bool>> where);
 
         /// <summary>
+        /// Gets the specified identifier.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
+        /// <param name="id">The identifier.</param>
+        /// <returns>data</returns>
+        TEntity Get(object id);
+
+        /// <summary>
         /// Saves the changes.
         /// </summary>
         /// <returns></returns>

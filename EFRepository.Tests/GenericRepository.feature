@@ -46,3 +46,13 @@ Scenario: Get datalist from database with condition content should contains "2" 
 	Then the data list I get should be
 		| Id | Content    |		
 		| 2  | TestData 2 |
+
+Scenario: Get data from database should be success
+	Given database has test datas
+		| Id | Content    |
+		| 1  | TestData   |
+		| 2  | TestData 2 |
+	When I use generic repository get data from database by id "1"
+	Then the data list I get should be
+		| Id | Content    |
+		| 1  | TestData   |		
