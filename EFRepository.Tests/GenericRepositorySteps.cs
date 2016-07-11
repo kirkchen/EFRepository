@@ -4,6 +4,7 @@ using System.Linq;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace EFRepository.Tests
 {
@@ -16,6 +17,8 @@ namespace EFRepository.Tests
         public TestDbContext DbContext { get; private set; }
 
         public TestRepository Repository { get; private set; }
+
+        public Expression<Func<TestData, bool>> Condition { get; set; }
 
         public TestData DataItem { get; private set; }
 
@@ -56,6 +59,12 @@ namespace EFRepository.Tests
             }
         }
 
+        [Given(@"test datas content field should contains ""(.*)""")]
+        public void GivenTestDatasContentFieldShouldContains(string condition)
+        {
+            this.Condition = (data) => data.Content.Contains(condition);
+        }       
+
         [When(@"I use generic repository to add data")]
         public void WhenIUseGenericRepositoryToAddData()
         {
@@ -78,6 +87,12 @@ namespace EFRepository.Tests
         public void WhenIUseGenericRepositoryGetDataListFromDatabase()
         {
             this.DataList = this.Repository.GetList();
+        }
+
+        [When(@"I use generic repository get data list with condition from database")]
+        public void WhenIUseGenericRepositoryGetDataListWithConditionFromDatabase()
+        {
+            this.DataList = this.Repository.GetList(this.Condition);
         }
 
         [Then(@"database should exists test datas")]

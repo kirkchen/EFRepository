@@ -35,3 +35,14 @@ Scenario: Get datalist from database should be success
 		| Id | Content    |
 		| 1  | TestData   |
 		| 2  | TestData 2 |
+
+Scenario: Get datalist from database with condition content should contains "2" should be success
+	Given database has test datas
+		| Id | Content    |
+		| 1  | TestData   |
+		| 2  | TestData 2 |
+	And test datas content field should contains "2"
+	When I use generic repository get data list with condition from database	
+	Then the data list I get should be
+		| Id | Content    |		
+		| 2  | TestData 2 |

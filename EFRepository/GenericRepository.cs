@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -58,6 +59,19 @@ namespace EFRepository
         public virtual IEnumerable<TEntity> GetList()
         {
             var query = this.DbContext.Set<TEntity>();
+
+            return query.ToList();
+        }
+
+        /// <summary>
+        /// Gets the list.
+        /// </summary>
+        /// <param name="condition">The where.</param>
+        /// <returns>data list</returns>
+        public virtual IEnumerable<TEntity> GetList(Expression<Func<TEntity, bool>> condition)
+        {
+            var query = this.DbContext.Set<TEntity>()
+                                      .Where(condition);
 
             return query.ToList();
         }

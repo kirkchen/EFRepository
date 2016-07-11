@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace EFRepository
 {
@@ -25,6 +27,13 @@ namespace EFRepository
         /// </summary>
         /// <returns>data list</returns>
         IEnumerable<TEntity> GetList();
+
+        /// <summary>
+        /// Gets the list.
+        /// </summary>
+        /// <param name="where">The where.</param>
+        /// <returns>data list</returns>
+        IEnumerable<TEntity> GetList(Expression<Func<TEntity, bool>> where);
 
         /// <summary>
         /// Saves the changes.
