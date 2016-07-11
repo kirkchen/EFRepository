@@ -292,6 +292,55 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Update data which is exists in database should be success")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GenericRepository")]
+        public virtual void UpdateDataWhichIsExistsInDatabaseShouldBeSuccess()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update data which is exists in database should be success", ((string[])(null)));
+#line 71
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content"});
+            table13.AddRow(new string[] {
+                        "1",
+                        "TestData"});
+            table13.AddRow(new string[] {
+                        "2",
+                        "TestData 2"});
+#line 72
+ testRunner.Given("database has test datas", ((string)(null)), table13, "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content"});
+            table14.AddRow(new string[] {
+                        "1",
+                        "TestData Modified"});
+#line 76
+ testRunner.And("the data I want to update is", ((string)(null)), table14, "And ");
+#line 79
+ testRunner.When("I use generic repository update data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 80
+ testRunner.And("I save the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content"});
+            table15.AddRow(new string[] {
+                        "1",
+                        "TestData Modified"});
+            table15.AddRow(new string[] {
+                        "2",
+                        "TestData 2"});
+#line 81
+ testRunner.Then("database should exists test datas", ((string)(null)), table15, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

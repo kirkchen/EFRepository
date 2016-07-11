@@ -67,3 +67,18 @@ Scenario: Get data from database with condition content should contains "2" shou
 	Then the data list I get should be
 		| Id | Content    |
 		| 2  | TestData 2 |	
+
+Scenario: Update data which is exists in database should be success
+	Given database has test datas
+		| Id | Content    |
+		| 1  | TestData   |
+		| 2  | TestData 2 |
+	And the data I want to update is
+		| Id | Content           |
+		| 1  | TestData Modified |
+	When I use generic repository update data
+	And  I save the changes
+	Then database should exists test datas
+		| Id | Content           |
+		| 1  | TestData Modified |
+		| 2  | TestData 2        |

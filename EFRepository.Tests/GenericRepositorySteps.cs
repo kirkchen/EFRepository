@@ -63,7 +63,13 @@ namespace EFRepository.Tests
         public void GivenTestDatasContentFieldShouldContains(string condition)
         {
             this.Condition = (data) => data.Content.Contains(condition);
-        }       
+        }
+
+        [Given(@"the data I want to update is")]
+        public void GivenTheDataIWantToUpdateIs(Table table)
+        {
+            this.DataItem = table.CreateInstance<TestData>();
+        }
 
         [When(@"I use generic repository to add data")]
         public void WhenIUseGenericRepositoryToAddData()
@@ -109,6 +115,12 @@ namespace EFRepository.Tests
             this.DataItem = this.Repository.Get(this.Condition);
 
             this.DataList = new List<TestData>() { this.DataItem };
+        }
+
+        [When(@"I use generic repository update data")]
+        public void WhenIUseGenericRepositoryUpdateData()
+        {
+            this.Repository.Update(this.DataItem);
         }
 
         [Then(@"database should exists test datas")]

@@ -51,6 +51,12 @@ namespace EFRepository
         TEntity Get(Expression<Func<TEntity, bool>> condition);
 
         /// <summary>
+        /// Updates the specified data.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        void Update(TEntity data);
+
+        /// <summary>
         /// Saves the changes.
         /// </summary>
         /// <returns></returns>

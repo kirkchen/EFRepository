@@ -95,12 +95,24 @@ namespace EFRepository
         /// </summary>
         /// <param name="where">The where.</param>
         /// <returns>data</returns>
-        public TEntity Get(Expression<Func<TEntity, bool>> condition)
+        public virtual TEntity Get(Expression<Func<TEntity, bool>> condition)
         {
             var query = this.DbContext.Set<TEntity>()
                                       .Where(condition);
 
             return query.FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Updates the specified data.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        public virtual void Update(TEntity data)
+        {
+            this.DbContext.Set<TEntity>().Attach(data);
+
+            var entry = this.DbContext.Entry(data);
+            entry.State = EntityState.Modified;
         }
 
         /// <summary>
