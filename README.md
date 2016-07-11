@@ -37,7 +37,7 @@ Not yet implemented.
 
 - [ ] Generic Repository
     - [ ] Basic operation
-        - [ ] Add
+        - [x] Add
         - [ ] Add range
         - [ ] Get list
         - [ ] Get list with condition
