@@ -63,11 +63,30 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="GenericRepository.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GenericRepository.feature</DependentUpon>
+    </Compile>
+    <Compile Include="GenericRepositorySteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestClasses\TestData.cs" />
+    <Compile Include="TestClasses\TestDbContext.cs" />
+    <Compile Include="TestClasses\TestRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="GenericRepository.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GenericRepository.feature.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EFRepository\EFRepository.csproj">
+      <Project>{3d6fc108-03ab-47e5-96c5-401cb8793bd7}</Project>
+      <Name>EFRepository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
