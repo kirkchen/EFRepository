@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
+using System.Collections.Generic;
 
 namespace EFRepository.Tests
 {
@@ -17,6 +18,8 @@ namespace EFRepository.Tests
         public TestRepository Repository { get; private set; }
 
         public TestData DataItem { get; private set; }
+
+        public IEnumerable<TestData> DataList { get; private set; }
 
         [BeforeScenario]
         public void BeforeScenario()
@@ -38,13 +41,19 @@ namespace EFRepository.Tests
         [Given(@"I have test datas")]
         public void GivenIHaveTestDatas(Table table)
         {
-            this.DataItem = table.CreateInstance<TestData>();
+            this.DataList = table.CreateSet<TestData>();
         }
 
         [When(@"I use generic repository to add data")]
         public void WhenIUseGenericRepositoryToAddData()
         {
-            this.Repository.Add(this.DataItem);
+            this.Repository.Add(this.DataList.First());
+        }
+
+        [When(@"I use generic repository to add datalist")]
+        public void WhenIUseGenericRepositoryToAddDatalist()
+        {
+            this.Repository.AddRange(this.DataList);
         }
 
         [When(@"I save the changes")]

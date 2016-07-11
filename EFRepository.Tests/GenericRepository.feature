@@ -12,3 +12,15 @@ Scenario: Add data into database should be success
 	Then database should exists test datas
 		| Id | Content  |
 		| 1  | TestData |
+
+Scenario: Add datalist into database should be success
+	Given I have test datas
+		| Id | Content    |
+		| 1  | TestData   |
+		| 2  | TestData 2 |
+	When I use generic repository to add datalist
+	And  I save the changes
+	Then database should exists test datas
+		| Id | Content    |
+		| 1  | TestData   |
+		| 2  | TestData 2 |

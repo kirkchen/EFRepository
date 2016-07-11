@@ -101,6 +101,46 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Add datalist into database should be success")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GenericRepository")]
+        public virtual void AddDatalistIntoDatabaseShouldBeSuccess()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add datalist into database should be success", ((string[])(null)));
+#line 16
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content"});
+            table3.AddRow(new string[] {
+                        "1",
+                        "TestData"});
+            table3.AddRow(new string[] {
+                        "2",
+                        "TestData 2"});
+#line 17
+ testRunner.Given("I have test datas", ((string)(null)), table3, "Given ");
+#line 21
+ testRunner.When("I use generic repository to add datalist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 22
+ testRunner.And("I save the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content"});
+            table4.AddRow(new string[] {
+                        "1",
+                        "TestData"});
+            table4.AddRow(new string[] {
+                        "2",
+                        "TestData 2"});
+#line 23
+ testRunner.Then("database should exists test datas", ((string)(null)), table4, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

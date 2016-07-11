@@ -40,6 +40,18 @@ namespace EFRepository
         }
 
         /// <summary>
+        /// Adds the range.
+        /// </summary>
+        /// <param name="datalist">The datalist.</param>
+        public virtual void AddRange(IEnumerable<TEntity> datalist)
+        {
+            foreach (var data in datalist)
+            {
+                this.Add(data);
+            }
+        }
+
+        /// <summary>
         /// Saves the changes.
         /// </summary>
         /// <returns>the count of effected rows</returns>
