@@ -21,6 +21,12 @@ namespace EFRepository
         void AddRange(IEnumerable<TEntity> datalist);
 
         /// <summary>
+        /// Gets the list.
+        /// </summary>
+        /// <returns>data list</returns>
+        IEnumerable<TEntity> GetList();
+
+        /// <summary>
         /// Saves the changes.
         /// </summary>
         /// <returns></returns>

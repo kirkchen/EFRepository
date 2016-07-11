@@ -52,6 +52,17 @@ namespace EFRepository
         }
 
         /// <summary>
+        /// Gets the list.
+        /// </summary>
+        /// <returns>data list</returns>
+        public virtual IEnumerable<TEntity> GetList()
+        {
+            var query = this.DbContext.Set<TEntity>();
+
+            return query.ToList();
+        }
+
+        /// <summary>
         /// Saves the changes.
         /// </summary>
         /// <returns>the count of effected rows</returns>

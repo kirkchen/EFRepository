@@ -44,6 +44,18 @@ namespace EFRepository.Tests
             this.DataList = table.CreateSet<TestData>();
         }
 
+        [Given(@"database has test datas")]
+        public void GivenDatabaseHasTestDatas(Table table)
+        {
+            var dataList = table.CreateSet<TestData>();
+
+            using (var dbContext = new TestDbContext(this.ConnectionString))
+            {
+                dbContext.TestDatas.AddRange(dataList);
+                dbContext.SaveChanges();
+            }
+        }
+
         [When(@"I use generic repository to add data")]
         public void WhenIUseGenericRepositoryToAddData()
         {
@@ -62,6 +74,12 @@ namespace EFRepository.Tests
             this.Repository.SaveChanges();
         }
 
+        [When(@"I use generic repository get data list from database")]
+        public void WhenIUseGenericRepositoryGetDataListFromDatabase()
+        {
+            this.DataList = this.Repository.GetList();
+        }
+
         [Then(@"database should exists test datas")]
         public void ThenDatabaseShouldExistsTestDatas(Table table)
         {
@@ -71,6 +89,12 @@ namespace EFRepository.Tests
 
                 table.CompareToSet(datalist);
             }
+        }
+
+        [Then(@"the data list I get should be")]
+        public void ThenTheDataListIGetShouldBe(Table table)
+        {
+            table.CompareToSet(this.DataList);
         }
     }
 }
