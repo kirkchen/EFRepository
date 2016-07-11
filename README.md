@@ -1,5 +1,7 @@
 # EFRepository
 
+[![Build status](https://ci.appveyor.com/api/projects/status/vriyn5ano6rvqarb?svg=true)](https://ci.appveyor.com/project/kirkchen/efrepository)
+
 Generic repository and pattern "Unit of work" for Entity framework
 
 ## Requirements
@@ -34,16 +36,16 @@ Not yet implemented.
 ## Roadmap
 
 - [ ] Generic Repository
-    - [ ] Basic operation
-        - [ ] Add
-        - [ ] Add range
-        - [ ] Get list
-        - [ ] Get list with condition
-        - [ ] Get by id
-        - [ ] Get with condition
-        - [ ] Update
-        - [ ] Delete
-        - [ ] Support generic identity
+    - [x] Basic operation
+        - [x] Add
+        - [x] Add range
+        - [x] Get list
+        - [x] Get list with condition
+        - [x] Get by id
+        - [x] Get with condition
+        - [x] Update
+        - [x] Delete
+        - [x] Support generic identity
     - [ ] Hooks Supports
         - [ ] Soft delete
         - [ ] Auto system infomation

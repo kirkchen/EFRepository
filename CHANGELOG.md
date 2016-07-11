@@ -1,0 +1,32 @@
+<a name=""></a>
+#  0.1.0 - Implement basic operation (2016-07-11) 
+
+* docs(readme): Finish add feature ([33aded5](https://github.com/kirkchen/EFRepository/commit/33aded5))
+* docs(readme): Finish add range feature ([348a550](https://github.com/kirkchen/EFRepository/commit/348a550))
+* docs(readme): Finish delete feature ([5478a48](https://github.com/kirkchen/EFRepository/commit/5478a48))
+* docs(readme): Finish generic identity feature ([6a5bd8b](https://github.com/kirkchen/EFRepository/commit/6a5bd8b))
+* docs(readme): Finish get data by id feature ([b998bf8](https://github.com/kirkchen/EFRepository/commit/b998bf8))
+* docs(readme): Finish get data with condition feature ([e797894](https://github.com/kirkchen/EFRepository/commit/e797894))
+* docs(readme): Finish get list feature ([1a5bbed](https://github.com/kirkchen/EFRepository/commit/1a5bbed))
+* docs(readme): Finish get list with condition feature ([4b32b0d](https://github.com/kirkchen/EFRepository/commit/4b32b0d))
+* docs(readme): Finish update data feature ([e56a090](https://github.com/kirkchen/EFRepository/commit/e56a090))
+* feat(library): Initial project ([48d7abe](https://github.com/kirkchen/EFRepository/commit/48d7abe))
+* feat(library): Install required packages ([30438c5](https://github.com/kirkchen/EFRepository/commit/30438c5))
+* feat(repository): Add add range funciton to interface ([78324bb](https://github.com/kirkchen/EFRepository/commit/78324bb))
+* feat(repository): Implement add range ([8191654](https://github.com/kirkchen/EFRepository/commit/8191654))
+* feat(repository): Implement delete feature ([bf32d82](https://github.com/kirkchen/EFRepository/commit/bf32d82))
+* feat(repository): Implement get data by id feature ([86a7993](https://github.com/kirkchen/EFRepository/commit/86a7993))
+* feat(repository): Implement get data with condition feature ([f4f16a9](https://github.com/kirkchen/EFRepository/commit/f4f16a9))
+* feat(repository): Implement get list feature ([5a6aae0](https://github.com/kirkchen/EFRepository/commit/5a6aae0))
+* feat(repository): Implement get list with condition feature ([2df7800](https://github.com/kirkchen/EFRepository/commit/2df7800))
+* feat(repository): Implement repository add ([a7d7dcf](https://github.com/kirkchen/EFRepository/commit/a7d7dcf))
+* feat(repository): Implement update data feature ([d504caa](https://github.com/kirkchen/EFRepository/commit/d504caa))
+* feat(repository): Make repository key generic ([2490cb1](https://github.com/kirkchen/EFRepository/commit/2490cb1))
+* chore(build): Add unittest ([8664c6d](https://github.com/kirkchen/EFRepository/commit/8664c6d))
+* chore(build): Enable nuget restore ([65cda31](https://github.com/kirkchen/EFRepository/commit/65cda31))
+* chore(build): Integrate appveyor ([f03acfd](https://github.com/kirkchen/EFRepository/commit/f03acfd))
+* Add readme ([b70fd23](https://github.com/kirkchen/EFRepository/commit/b70fd23))
+* Initial commit ([db9b452](https://github.com/kirkchen/EFRepository/commit/db9b452))
+
+
+
