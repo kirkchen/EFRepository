@@ -1,5 +1,5 @@
 <a name=""></a>
-#  (2016-07-11)
+#  0.1.0 - Implement basic operation (2016-07-11) 
 
 * docs(readme): Finish add feature ([33aded5](https://github.com/kirkchen/EFRepository/commit/33aded5))
 * docs(readme): Finish add range feature ([348a550](https://github.com/kirkchen/EFRepository/commit/348a550))
