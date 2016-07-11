@@ -1,6 +1,12 @@
 version: 1.0.{build}
 configuration: Release
 
+environment:
+  TestDb: Server=(local)\SQL2016;Database=efrepositorytest;User ID=sa;Password=Password12!
+
+services:
+  - mssql2016
+
 matrix:
   fast_finish: true
 
@@ -18,3 +24,7 @@ build:
   parallel: true
   publish_wap: true
   verbosity: minimal
+
+test:
+  assemblies:
+    - '**\*.Tests.dll'

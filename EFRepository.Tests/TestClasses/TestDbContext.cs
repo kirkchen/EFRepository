@@ -16,8 +16,8 @@ namespace EFRepository.Tests.TestClasses
         /// <summary>
         /// Initializes a new instance of the <see cref="TestDbContext"/> class.
         /// </summary>
-        public TestDbContext()
-            : base("TestDb")
+        public TestDbContext(string nameOrConnectionString)
+            : base(nameOrConnectionString)
         {
         }
 

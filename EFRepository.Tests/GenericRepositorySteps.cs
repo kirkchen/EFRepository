@@ -10,6 +10,8 @@ namespace EFRepository.Tests
     [Scope(Feature = "GenericRepository")]
     public class GenericRepositorySteps
     {
+        public string ConnectionString { get; private set; }
+
         public TestDbContext DbContext { get; private set; }
 
         public TestRepository Repository { get; private set; }
@@ -19,7 +21,9 @@ namespace EFRepository.Tests
         [BeforeScenario]
         public void BeforeScenario()
         {
-            this.DbContext = new TestDbContext();
+            this.ConnectionString = Environment.GetEnvironmentVariable("TestDb") ?? "TestDb";
+
+            this.DbContext = new TestDbContext(ConnectionString);
             this.DbContext.Database.Delete();
 
             this.Repository = new TestRepository(this.DbContext);
@@ -36,23 +40,23 @@ namespace EFRepository.Tests
         {
             this.DataItem = table.CreateInstance<TestData>();
         }
-        
+
         [When(@"I use generic repository to add data")]
         public void WhenIUseGenericRepositoryToAddData()
         {
             this.Repository.Add(this.DataItem);
         }
-        
+
         [When(@"I save the changes")]
         public void WhenISaveTheChanges()
         {
             this.Repository.SaveChanges();
         }
-        
+
         [Then(@"database should exists test datas")]
         public void ThenDatabaseShouldExistsTestDatas(Table table)
         {
-            using (var dbContext = new TestDbContext())
+            using (var dbContext = new TestDbContext(this.ConnectionString))
             {
                 var datalist = dbContext.TestDatas.ToList();
 
