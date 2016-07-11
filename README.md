@@ -42,7 +42,7 @@ Not yet implemented.
         - [x] Get list
         - [x] Get list with condition
         - [x] Get by id
-        - [ ] Get with condition
+        - [x] Get with condition
         - [ ] Update
         - [ ] Delete
         - [ ] Support generic identity
