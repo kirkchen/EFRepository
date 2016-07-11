@@ -40,7 +40,7 @@ Not yet implemented.
         - [x] Add
         - [x] Add range
         - [x] Get list
-        - [ ] Get list with condition
+        - [x] Get list with condition
         - [ ] Get by id
         - [ ] Get with condition
         - [ ] Update
