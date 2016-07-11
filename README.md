@@ -36,7 +36,7 @@ Not yet implemented.
 ## Roadmap
 
 - [ ] Generic Repository
-    - [ ] Basic operation
+    - [x] Basic operation
         - [x] Add
         - [x] Add range
         - [x] Get list
@@ -45,7 +45,7 @@ Not yet implemented.
         - [x] Get with condition
         - [x] Update
         - [x] Delete
-        - [ ] Support generic identity
+        - [x] Support generic identity
     - [ ] Hooks Supports
         - [ ] Soft delete
         - [ ] Auto system infomation
