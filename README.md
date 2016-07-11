@@ -41,7 +41,7 @@ Not yet implemented.
         - [x] Add range
         - [x] Get list
         - [x] Get list with condition
-        - [ ] Get by id
+        - [x] Get by id
         - [ ] Get with condition
         - [ ] Update
         - [ ] Delete
