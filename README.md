@@ -22,7 +22,17 @@ Generic repository and pattern "Unit of work" for Entity framework
         * Update
         * Delete
         * Support generic identity
+    * Asynchronous operation
+        * Add async
+        * Add range async
+        * Get list async
+        * Get list with condition async
+        * Get by id async
+        * Get with condition async
+        * Update async
+        * Delete async   
     * Hooks Supports
+        * Nested object save changes
         * Soft delete
         * Auto system infomation
         * Audit log
@@ -46,7 +56,17 @@ Not yet implemented.
         - [x] Update
         - [x] Delete
         - [x] Support generic identity
+    - [ ] Asynchronous operation
+        - [ ] Add async
+        - [ ] Add range async
+        - [ ] Get list async
+        - [ ] Get list with condition async
+        - [ ] Get by id async
+        - [ ] Get with condition async
+        - [ ] Update async
+        - [ ] Delete async        
     - [ ] Hooks Supports
+        - [ ] Nested object save changes
         - [ ] Soft delete
         - [ ] Auto system infomation
         - [ ] Audit log
