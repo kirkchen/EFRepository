@@ -1,5 +1,7 @@
 # EFRepository
 
+[![Build status](https://ci.appveyor.com/api/projects/status/vriyn5ano6rvqarb?svg=true)](https://ci.appveyor.com/project/kirkchen/efrepository)
+
 Generic repository and pattern "Unit of work" for Entity framework
 
 ## Requirements

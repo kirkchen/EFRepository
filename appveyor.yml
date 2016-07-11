@@ -1,0 +1,20 @@
+version: 1.0.{build}
+configuration: Release
+
+matrix:
+  fast_finish: true
+
+cache:
+  - C:\Users\appveyor\AppData\Local\NuGet\Cache
+
+assembly_info:
+  patch: true
+  file: AssemblyInfo.*
+  assembly_version: "1.0.{build}"
+  assembly_file_version: "{version}"
+  assembly_informational_version: "{version}"
+
+build:
+  parallel: true
+  publish_wap: true
+  verbosity: minimal
