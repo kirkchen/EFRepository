@@ -8,7 +8,7 @@ namespace EFRepository
     /// IRepository
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
-    public interface IRepository<TEntity> where TEntity : class
+    public interface IRepository<TKey, TEntity> where TEntity : class
     {
         /// <summary>
         /// Adds the specified data.
@@ -41,7 +41,7 @@ namespace EFRepository
         /// <typeparam name="TKey">The type of the key.</typeparam>
         /// <param name="id">The identifier.</param>
         /// <returns>data</returns>
-        TEntity Get(object id);
+        TEntity Get(TKey id);
 
         /// <summary>
         /// Gets the specified where.
@@ -59,8 +59,8 @@ namespace EFRepository
         /// <summary>
         /// Deletes the specified identifier.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        void Delete(object id);
+        /// <param name="id">The identifieTKeyr.</param>
+        void Delete(TKey id);
 
         /// <summary>
         /// Saves the changes.

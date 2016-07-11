@@ -10,7 +10,7 @@ namespace EFRepository.Tests.TestClasses
     /// TestRepository
     /// </summary>
     /// <seealso cref="EFRepository.GenericRepository{EFRepository.Tests.TestClasses.TestData}" />
-    public class TestRepository : GenericRepository<TestData>
+    public class TestRepository : GenericRepository<int, TestData>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TestRepository"/> class.

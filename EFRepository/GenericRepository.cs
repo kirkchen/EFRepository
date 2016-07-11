@@ -12,7 +12,7 @@ namespace EFRepository
     /// GenericRepository
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
-    public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class GenericRepository<TKey, TEntity> : IRepository<TKey, TEntity> where TEntity : class
     {
         /// <summary>
         /// Gets the database context.
@@ -82,7 +82,7 @@ namespace EFRepository
         /// <typeparam name="TKey">The type of the key.</typeparam>
         /// <param name="id">The identifier.</param>
         /// <returns>data</returns>
-        public virtual TEntity Get(object id)
+        public virtual TEntity Get(TKey id)
         {
             var query = this.DbContext.Set<TEntity>()
                                       .Find(id);
@@ -119,7 +119,7 @@ namespace EFRepository
         /// Deletes the specified identifier.
         /// </summary>
         /// <param name="id">The identifier.</param>
-        public virtual void Delete(object id)
+        public virtual void Delete(TKey id)
         {
             var data = this.Get(id);
 
