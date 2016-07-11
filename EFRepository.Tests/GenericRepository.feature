@@ -82,3 +82,14 @@ Scenario: Update data which is exists in database should be success
 		| Id | Content           |
 		| 1  | TestData Modified |
 		| 2  | TestData 2        |
+
+Scenario: Delete data which is exists in database should be success
+	Given database has test datas
+		| Id | Content    |
+		| 1  | TestData   |
+		| 2  | TestData 2 |	
+	When I use generic repository delete data with id "1"
+	And  I save the changes
+	Then database should exists test datas
+		| Id | Content           |		
+		| 2  | TestData 2        |

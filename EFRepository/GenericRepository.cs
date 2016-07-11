@@ -116,6 +116,18 @@ namespace EFRepository
         }
 
         /// <summary>
+        /// Deletes the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        public virtual void Delete(object id)
+        {
+            var data = this.Get(id);
+
+            this.DbContext.Set<TEntity>()
+                          .Remove(data);
+        }
+
+        /// <summary>
         /// Saves the changes.
         /// </summary>
         /// <returns>the count of effected rows</returns>

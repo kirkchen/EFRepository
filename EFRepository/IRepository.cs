@@ -57,6 +57,12 @@ namespace EFRepository
         void Update(TEntity data);
 
         /// <summary>
+        /// Deletes the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        void Delete(object id);
+
+        /// <summary>
         /// Saves the changes.
         /// </summary>
         /// <returns></returns>

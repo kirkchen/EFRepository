@@ -341,6 +341,43 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Delete data which is exists in database should be success")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "GenericRepository")]
+        public virtual void DeleteDataWhichIsExistsInDatabaseShouldBeSuccess()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete data which is exists in database should be success", ((string[])(null)));
+#line 86
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content"});
+            table16.AddRow(new string[] {
+                        "1",
+                        "TestData"});
+            table16.AddRow(new string[] {
+                        "2",
+                        "TestData 2"});
+#line 87
+ testRunner.Given("database has test datas", ((string)(null)), table16, "Given ");
+#line 91
+ testRunner.When("I use generic repository delete data with id \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 92
+ testRunner.And("I save the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content"});
+            table17.AddRow(new string[] {
+                        "2",
+                        "TestData 2"});
+#line 93
+ testRunner.Then("database should exists test datas", ((string)(null)), table17, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

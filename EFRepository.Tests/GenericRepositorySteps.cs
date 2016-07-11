@@ -123,6 +123,12 @@ namespace EFRepository.Tests
             this.Repository.Update(this.DataItem);
         }
 
+        [When(@"I use generic repository delete data with id ""(.*)""")]
+        public void WhenIUseGenericRepositoryDeleteDataWithId(int id)
+        {
+            this.Repository.Delete(id);
+        }
+
         [Then(@"database should exists test datas")]
         public void ThenDatabaseShouldExistsTestDatas(Table table)
         {
