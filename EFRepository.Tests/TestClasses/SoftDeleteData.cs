@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EFRepository.Tests.TestClasses
 {
-    public class SoftDeleteData : ISoftDelete
+    public class SoftDeleteData : IEntity<int>, ISoftDelete
     {
         /// <summary>
         /// Gets or sets the identifier.
@@ -32,6 +32,6 @@ namespace EFRepository.Tests.TestClasses
         /// <value>
         /// <c>true</c> if this instance is delete; otherwise, <c>false</c>.
         /// </value>
-        public bool IsDelete { get; set; }        
+        public bool IsDelete { get; set; }
     }
 }

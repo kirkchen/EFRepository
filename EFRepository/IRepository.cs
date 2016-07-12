@@ -8,7 +8,7 @@ namespace EFRepository
     /// IRepository
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
-    public interface IRepository<TKey, TEntity> where TEntity : class
+    public interface IRepository<TKey, TEntity> where TEntity : class, IEntity<TKey> where TKey : IEquatable<TKey>
     {
         /// <summary>
         /// Adds the specified data.

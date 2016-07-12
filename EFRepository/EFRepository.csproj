@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GenericRepository.cs" />
+    <Compile Include="IEntity.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="ISoftDelete.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

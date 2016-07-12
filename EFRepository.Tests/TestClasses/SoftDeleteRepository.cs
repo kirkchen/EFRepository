@@ -10,7 +10,7 @@ namespace EFRepository.Tests.TestClasses
     /// SoftDeleteRepository
     /// </summary>
     /// <seealso cref="EFRepository.GenericRepository{System.Int32, EFRepository.Tests.TestClasses.SoftDeleteData}" />
-    public class SoftDeleteRepository : GenericRepository<int, SoftDeleteData>
+    public class SoftDeleteRepository : GenericRepository<int, SoftDeleteData>, IRepository<int, SoftDeleteData>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SoftDeleteRepository"/> class.

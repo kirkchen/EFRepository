@@ -12,7 +12,7 @@ namespace EFRepository
     /// GenericRepository
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
-    public class GenericRepository<TKey, TEntity> : IRepository<TKey, TEntity> where TEntity : class
+    public class GenericRepository<TKey, TEntity> : IRepository<TKey, TEntity> where TEntity : class, IEntity<TKey> where TKey : IEquatable<TKey>
     {
         /// <summary>
         /// Gets the database context.
@@ -99,21 +99,20 @@ namespace EFRepository
         /// <typeparam name="TKey">The type of the key.</typeparam>
         /// <param name="id">The identifier.</param>
         /// <returns>data</returns>
-        public virtual TEntity Get(TKey id)
+        public virtual TEntity Get(TKey id)            
         {
-            var query = this.DbContext.Set<TEntity>()                                      
-                                      .Find(id);
+            var query = this.DbContext.Set<TEntity>()
+                                      .Where(i => i.Id.Equals(id));
 
-            if (query is ISoftDelete)
+            if (query is IQueryable<ISoftDelete>)
             {
-                var softDeleteQuery = query as ISoftDelete;
-                if (softDeleteQuery.IsDelete)
-                {
-                    query = null;
-                }
+                var solfDeleteQuery = query as IQueryable<ISoftDelete>;
+                solfDeleteQuery = solfDeleteQuery.Where(i => !i.IsDelete);
+
+                query = solfDeleteQuery.OfType<TEntity>().AsQueryable();
             }
 
-            return query;
+            return query.FirstOrDefault();
         }
 
         /// <summary>
