@@ -58,7 +58,16 @@ namespace EFRepository
         /// <returns>data list</returns>
         public virtual IEnumerable<TEntity> GetList()
         {
-            var query = this.DbContext.Set<TEntity>();
+            var query = this.DbContext.Set<TEntity>()
+                                      .AsQueryable();
+
+            if (query is IQueryable<ISoftDelete>)
+            {
+                var solfDeleteQuery = query as IQueryable<ISoftDelete>;
+                solfDeleteQuery = solfDeleteQuery.Where(i => !i.IsDelete);
+
+                query = solfDeleteQuery.OfType<TEntity>().AsQueryable();
+            }
 
             return query.ToList();
         }
@@ -73,6 +82,14 @@ namespace EFRepository
             var query = this.DbContext.Set<TEntity>()
                                       .Where(condition);
 
+            if (query is IQueryable<ISoftDelete>)
+            {
+                var solfDeleteQuery = query as IQueryable<ISoftDelete>;
+                solfDeleteQuery = solfDeleteQuery.Where(i => !i.IsDelete);
+
+                query = solfDeleteQuery.OfType<TEntity>().AsQueryable();
+            }
+
             return query.ToList();
         }
 
@@ -84,8 +101,17 @@ namespace EFRepository
         /// <returns>data</returns>
         public virtual TEntity Get(TKey id)
         {
-            var query = this.DbContext.Set<TEntity>()
+            var query = this.DbContext.Set<TEntity>()                                      
                                       .Find(id);
+
+            if (query is ISoftDelete)
+            {
+                var softDeleteQuery = query as ISoftDelete;
+                if (softDeleteQuery.IsDelete)
+                {
+                    query = null;
+                }
+            }
 
             return query;
         }
@@ -99,6 +125,14 @@ namespace EFRepository
         {
             var query = this.DbContext.Set<TEntity>()
                                       .Where(condition);
+
+            if (query is IQueryable<ISoftDelete>)
+            {
+                var solfDeleteQuery = query as IQueryable<ISoftDelete>;
+                solfDeleteQuery = solfDeleteQuery.Where(i => !i.IsDelete);
+
+                query = solfDeleteQuery.OfType<TEntity>().AsQueryable();
+            }
 
             return query.FirstOrDefault();
         }
@@ -125,6 +159,15 @@ namespace EFRepository
 
             this.DbContext.Set<TEntity>()
                           .Remove(data);
+
+            if (data is ISoftDelete)
+            {
+                var entry = this.DbContext.Entry(data);
+                entry.State = EntityState.Modified;
+
+                var softDeleteData = data as ISoftDelete;
+                softDeleteData.IsDelete = true;
+            }
         }
 
         /// <summary>
