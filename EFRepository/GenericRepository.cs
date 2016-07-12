@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EFRepository.Hooks;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -61,13 +62,8 @@ namespace EFRepository
             var query = this.DbContext.Set<TEntity>()
                                       .AsQueryable();
 
-            if (query is IQueryable<ISoftDelete>)
-            {
-                var solfDeleteQuery = query as IQueryable<ISoftDelete>;
-                solfDeleteQuery = solfDeleteQuery.Where(i => !i.IsDelete);
-
-                query = solfDeleteQuery.OfType<TEntity>().AsQueryable();
-            }
+            var hook = new SoftDeletePostLoadHook<TEntity>();
+            query = hook.Execute(query, null);
 
             return query.ToList();
         }
@@ -82,13 +78,8 @@ namespace EFRepository
             var query = this.DbContext.Set<TEntity>()
                                       .Where(condition);
 
-            if (query is IQueryable<ISoftDelete>)
-            {
-                var solfDeleteQuery = query as IQueryable<ISoftDelete>;
-                solfDeleteQuery = solfDeleteQuery.Where(i => !i.IsDelete);
-
-                query = solfDeleteQuery.OfType<TEntity>().AsQueryable();
-            }
+            var hook = new SoftDeletePostLoadHook<TEntity>();
+            query = hook.Execute(query, null);
 
             return query.ToList();
         }
@@ -99,18 +90,13 @@ namespace EFRepository
         /// <typeparam name="TKey">The type of the key.</typeparam>
         /// <param name="id">The identifier.</param>
         /// <returns>data</returns>
-        public virtual TEntity Get(TKey id)            
+        public virtual TEntity Get(TKey id)
         {
             var query = this.DbContext.Set<TEntity>()
                                       .Where(i => i.Id.Equals(id));
 
-            if (query is IQueryable<ISoftDelete>)
-            {
-                var solfDeleteQuery = query as IQueryable<ISoftDelete>;
-                solfDeleteQuery = solfDeleteQuery.Where(i => !i.IsDelete);
-
-                query = solfDeleteQuery.OfType<TEntity>().AsQueryable();
-            }
+            var hook = new SoftDeletePostLoadHook<TEntity>();
+            query = hook.Execute(query, null);
 
             return query.FirstOrDefault();
         }
@@ -125,13 +111,8 @@ namespace EFRepository
             var query = this.DbContext.Set<TEntity>()
                                       .Where(condition);
 
-            if (query is IQueryable<ISoftDelete>)
-            {
-                var solfDeleteQuery = query as IQueryable<ISoftDelete>;
-                solfDeleteQuery = solfDeleteQuery.Where(i => !i.IsDelete);
-
-                query = solfDeleteQuery.OfType<TEntity>().AsQueryable();
-            }
+            var hook = new SoftDeletePostLoadHook<TEntity>();
+            query = hook.Execute(query, null);
 
             return query.FirstOrDefault();
         }
@@ -159,14 +140,12 @@ namespace EFRepository
             this.DbContext.Set<TEntity>()
                           .Remove(data);
 
-            if (data is ISoftDelete)
+            var hook = new SoftDeletePostDeleteHook<TEntity>();
+            hook.Execute(data, new HookContext()
             {
-                var entry = this.DbContext.Entry(data);
-                entry.State = EntityState.Modified;
-
-                var softDeleteData = data as ISoftDelete;
-                softDeleteData.IsDelete = true;
-            }
+                DbContext = this.DbContext,
+                Entity = data
+            });
         }
 
         /// <summary>
