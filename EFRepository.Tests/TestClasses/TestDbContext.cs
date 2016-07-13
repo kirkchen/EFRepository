@@ -36,5 +36,21 @@ namespace EFRepository.Tests.TestClasses
         /// The soft delete datas.
         /// </value>
         public DbSet<SoftDeleteData> SoftDeleteDatas { get; set; }
+
+        /// <summary>
+        /// Gets or sets the nested datas.
+        /// </summary>
+        /// <value>
+        /// The nested datas.
+        /// </value>
+        public DbSet<NestedData> NestedDatas { get; set; }
+
+        /// <summary>
+        /// Gets or sets the nested level2 datas.
+        /// </summary>
+        /// <value>
+        /// The nested level2 datas.
+        /// </value>
+        public DbSet<NestedLevel2Data> NestedLevel2Datas { get; set; }
     }
 }

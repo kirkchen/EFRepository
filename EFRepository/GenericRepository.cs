@@ -1,6 +1,9 @@
 ﻿using EFRepository.Hooks;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
@@ -21,7 +24,7 @@ namespace EFRepository
         /// <value>
         /// The database context.
         /// </value>
-        internal DbContext DbContext { get; set; }
+        protected DbContext DbContext { get; set; }
 
         /// <summary>
         /// Gets or sets the post action hooks.
@@ -183,10 +186,37 @@ namespace EFRepository
         /// <param name="data">The data.</param>
         public virtual void Update(TEntity data)
         {
+            var datatype = typeof(TEntity);
+
+            TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(datatype), datatype);
+            var properties = TypeDescriptor.GetProperties(datatype);
+
+            foreach (PropertyDescriptor property in properties)
+            {
+                var isChildList = property.PropertyType.GetInterfaces()
+                                                       .Any(t => t.IsGenericType
+                                                                 && t.GetGenericTypeDefinition() == typeof(IEnumerable<>));
+                isChildList = isChildList && property.PropertyType.IsGenericType;
+                if (!isChildList)
+                {
+                    continue;
+                }
+
+                var childType = property.PropertyType.GenericTypeArguments[0];
+                var children = property.GetValue(data) as IEnumerable;
+                foreach (var child in children)
+                {
+                    this.DbContext.Set(childType).Attach(child);
+
+                    var childEntry = this.DbContext.Entry(child);
+                    childEntry.State = EntityState.Modified;
+                }
+            }
+
             this.DbContext.Set<TEntity>().Attach(data);
 
             var entry = this.DbContext.Entry(data);
-            entry.State = EntityState.Modified;
+            entry.State = EntityState.Modified;                  
         }
 
         /// <summary>

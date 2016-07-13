@@ -69,6 +69,12 @@
       <DependentUpon>GenericRepository.feature</DependentUpon>
     </Compile>
     <Compile Include="GenericRepositorySteps.cs" />
+    <Compile Include="Nested.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Nested.feature</DependentUpon>
+    </Compile>
+    <Compile Include="NestedSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SoftDelete.feature.cs">
       <AutoGen>True</AutoGen>
@@ -76,6 +82,9 @@
       <DependentUpon>SoftDelete.feature</DependentUpon>
     </Compile>
     <Compile Include="SoftDeleteSteps.cs" />
+    <Compile Include="TestClasses\NestedData.cs" />
+    <Compile Include="TestClasses\NestedLevel2Data.cs" />
+    <Compile Include="TestClasses\NestedRepository.cs" />
     <Compile Include="TestClasses\SoftDeleteData.cs" />
     <Compile Include="TestClasses\SoftDeleteRepository.cs" />
     <Compile Include="TestClasses\TestData.cs" />
@@ -87,6 +96,10 @@
     <None Include="GenericRepository.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GenericRepository.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Nested.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Nested.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="SoftDelete.feature">
