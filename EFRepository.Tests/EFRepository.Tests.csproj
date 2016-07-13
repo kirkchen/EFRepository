@@ -70,6 +70,14 @@
     </Compile>
     <Compile Include="GenericRepositorySteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SoftDelete.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SoftDelete.feature</DependentUpon>
+    </Compile>
+    <Compile Include="SoftDeleteSteps.cs" />
+    <Compile Include="TestClasses\SoftDeleteData.cs" />
+    <Compile Include="TestClasses\SoftDeleteRepository.cs" />
     <Compile Include="TestClasses\TestData.cs" />
     <Compile Include="TestClasses\TestDbContext.cs" />
     <Compile Include="TestClasses\TestRepository.cs" />
@@ -81,6 +89,10 @@
       <LastGenOutput>GenericRepository.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="SoftDelete.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SoftDelete.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EFRepository\EFRepository.csproj">

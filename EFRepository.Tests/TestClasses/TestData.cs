@@ -5,7 +5,7 @@ namespace EFRepository.Tests.TestClasses
     /// <summary>
     /// TestData
     /// </summary>
-    public class TestData
+    public class TestData : IEntity<int>
     {
         /// <summary>
         /// Gets or sets the identifier.

@@ -28,5 +28,13 @@ namespace EFRepository.Tests.TestClasses
         /// The test datas.
         /// </value>
         public DbSet<TestData> TestDatas { get; set; }
+
+        /// <summary>
+        /// Gets or sets the soft delete datas.
+        /// </summary>
+        /// <value>
+        /// The soft delete datas.
+        /// </value>
+        public DbSet<SoftDeleteData> SoftDeleteDatas { get; set; }
     }
 }
