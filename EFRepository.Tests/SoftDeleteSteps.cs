@@ -1,4 +1,5 @@
-﻿using EFRepository.Tests.TestClasses;
+﻿using EFRepository.Hooks;
+using EFRepository.Tests.TestClasses;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -57,6 +58,8 @@ namespace EFRepository.Tests
         [Given(@"Register soft delete hook in generic repository")]
         public void GivenRegisterSoftDeleteHookInGenericRepository()
         {
+            this.Repository.RegisterPostLoadHook(new SoftDeletePostLoadHook<SoftDeleteData>());
+            this.Repository.RegisterPostActionHook(new SoftDeletePostActionHook<SoftDeleteData>());
         }
 
         [Given(@"test datas content field should contains ""(.*)""")]

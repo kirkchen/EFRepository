@@ -24,12 +24,48 @@ namespace EFRepository
         internal DbContext DbContext { get; set; }
 
         /// <summary>
+        /// Gets or sets the post action hooks.
+        /// </summary>
+        /// <value>
+        /// The post action hooks.
+        /// </value>
+        public ICollection<IPostActionHook<TEntity>> PostActionHooks { get; set; }
+
+        /// <summary>
+        /// Gets or sets the post load hooks.
+        /// </summary>
+        /// <value>
+        /// The post load hooks.
+        /// </value>
+        public ICollection<IPostLoadHook<TEntity>> PostLoadHooks { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="GenericRepository" /> class.
         /// </summary>
         /// <param name="context">The context.</param>
         public GenericRepository(DbContext context)
         {
             this.DbContext = context;
+            this.PostActionHooks = new List<IPostActionHook<TEntity>>();
+            this.PostLoadHooks = new List<IPostLoadHook<TEntity>>();
+        }
+
+        /// <summary>
+        /// Registers the post load hook.
+        /// </summary>
+        /// <param name="hook">The hook.</param>
+        public void RegisterPostLoadHook(IPostLoadHook<TEntity> hook)
+        {
+            this.PostLoadHooks.Add(hook);
+        }
+
+        /// <summary>
+        /// Registers the post action hook.
+        /// </summary>
+        /// <param name="hook">The hook.</param>
+        public void RegisterPostActionHook(IPostActionHook<TEntity> hook)
+        {
+            this.PostActionHooks.Add(hook);
         }
 
         /// <summary>
@@ -61,9 +97,15 @@ namespace EFRepository
         {
             var query = this.DbContext.Set<TEntity>()
                                       .AsQueryable();
-
-            var hook = new SoftDeletePostLoadHook<TEntity>();
-            query = hook.Execute(query, null);
+            
+            foreach (var hook in this.PostLoadHooks)
+            {
+                query = hook.Execute(query, new HookContext()
+                {
+                    DbContext = this.DbContext,
+                    Entity = query
+                });
+            }
 
             return query.ToList();
         }
@@ -78,8 +120,14 @@ namespace EFRepository
             var query = this.DbContext.Set<TEntity>()
                                       .Where(condition);
 
-            var hook = new SoftDeletePostLoadHook<TEntity>();
-            query = hook.Execute(query, null);
+            foreach (var hook in this.PostLoadHooks)
+            {
+                query = hook.Execute(query, new HookContext()
+                {
+                    DbContext = this.DbContext,
+                    Entity = query
+                });
+            }
 
             return query.ToList();
         }
@@ -95,8 +143,14 @@ namespace EFRepository
             var query = this.DbContext.Set<TEntity>()
                                       .Where(i => i.Id.Equals(id));
 
-            var hook = new SoftDeletePostLoadHook<TEntity>();
-            query = hook.Execute(query, null);
+            foreach (var hook in this.PostLoadHooks)
+            {
+                query = hook.Execute(query, new HookContext()
+                {
+                    DbContext = this.DbContext,
+                    Entity = query
+                });
+            }
 
             return query.FirstOrDefault();
         }
@@ -111,8 +165,14 @@ namespace EFRepository
             var query = this.DbContext.Set<TEntity>()
                                       .Where(condition);
 
-            var hook = new SoftDeletePostLoadHook<TEntity>();
-            query = hook.Execute(query, null);
+            foreach (var hook in this.PostLoadHooks)
+            {
+                query = hook.Execute(query, new HookContext()
+                {
+                    DbContext = this.DbContext,
+                    Entity = query
+                });
+            }
 
             return query.FirstOrDefault();
         }
@@ -140,12 +200,14 @@ namespace EFRepository
             this.DbContext.Set<TEntity>()
                           .Remove(data);
 
-            var hook = new SoftDeletePostDeleteHook<TEntity>();
-            hook.Execute(data, new HookContext()
+            foreach (var hook in this.PostActionHooks)
             {
-                DbContext = this.DbContext,
-                Entity = data
-            });
+                hook.Execute(data, new HookContext()
+                {
+                    DbContext = this.DbContext,
+                    Entity = data
+                });
+            };
         }
 
         /// <summary>

@@ -8,6 +8,7 @@ Scenario: Get datalist from database should filter IsDelete=true if data is soft
 		| Id | Content    | IsDelete |
 		| 1  | TestData   | true     |
 		| 2  | TestData 2 | false    |
+	And Register soft delete hook in generic repository
 	When I use generic repository get data list from database	
 	Then the data list I get should be
 		| Id | Content    |		
@@ -20,6 +21,7 @@ Scenario: Get datalist from database with condition content should contains "2" 
 		| 2  | TestData 2 | false    |
 		| 3  | TestData 2 | true     |
 	And test datas content field should contains "2"
+	And Register soft delete hook in generic repository
 	When I use generic repository get data list with condition from database	
 	Then the data list I get should be
 		| Id | Content    |		
@@ -30,6 +32,7 @@ Scenario: Get data from database should filter IsDelete=true if data is soft del
 		| Id | Content    | IsDelete |
 		| 1  | TestData   | true     |
 		| 2  | TestData 2 | false    |
+	And Register soft delete hook in generic repository
 	When I use generic repository get data from database by id "1"
 	Then the data list I get should be empty		
 
@@ -40,6 +43,7 @@ Scenario: Get data from database with condition content should contains "2" shou
 		| 2  | TestData 2 | true     |
 		| 3  | TestData 2 | false    |
 	And test datas content field should contains "2"
+	And Register soft delete hook in generic repository
 	When I use generic repository get data from database with conditon
 	Then the data list I get should be
 		| Id | Content    |
@@ -50,7 +54,7 @@ Scenario: Delete data will be replaced by update IsDelete field
 		| Id | Content    | IsDelete |
 		| 1  | TestData   | false    |
 		| 2  | TestData 2 | false    |
-	And  Register soft delete hook in generic repository
+	And Register soft delete hook in generic repository
 	When I use generic repository delete data with id "1"
 	And  I save the changes
 	Then database should exists test datas
