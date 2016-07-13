@@ -41,7 +41,48 @@ Generic repository and pattern "Unit of work" for Entity framework
 
 ## Quick Start
 
-Not yet implemented.
+1. Create data class with interface IEntity<TKey>
+
+    ``` csharp    
+    public class MyData : IEntity<int>
+    {        
+        [Key]
+        public int Id { get; set; }
+        
+        public string Content { get; set; }
+    }
+    ```
+
+1. Create dbContext
+
+    ``` csharp
+    public class MyDbContext: DbContext
+    {
+        public DbSet<MyData> MyDatas { get; set; }
+    }
+    ```
+
+1. Create repository for data class
+
+    ``` csharp
+    public class MyDataRepository : GenericRepository<int, MyData>, IRepository<int, MyData>
+    {
+        public MyDataRepository(MyDbContext context)
+            : base(context)
+        {
+            // Enable soft delete
+            this.RegisterPostLoadHook(new SoftDeletePostLoadHook<MyData>());
+            this.RegisterPostActionHook(new SoftDeletePostActionHook<MyData>());
+        }
+    }
+    ```
+
+1. Use reository
+
+    ``` csharp
+    var repository = new MyDataRepository(dbContext);
+    var myData = repository.Get(1);
+    ```
 
 ## Roadmap
 
@@ -67,7 +108,7 @@ Not yet implemented.
         - [ ] Delete async        
     - [ ] Hooks Supports
         - [ ] Nested object save changes
-        - [ ] Soft delete
+        - [x] Soft delete
         - [ ] Auto system infomation
         - [ ] Audit log
         - [ ] Global query filter
