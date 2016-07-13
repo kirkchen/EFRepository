@@ -27,7 +27,7 @@ build:
   parallel: true
   publish_wap: true
   verbosity: minimal
+  project: EFRepository.sln
 
-test:
-  assemblies:
-    - '**\*.Tests.dll'
+test_script:  
+  - packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:vstest.console.exe -targetargs:"/logger:Appveyor EFRepository.Tests\bin\Release\EFRepository.Tests.dll" -output:CodeCoverage.xml
