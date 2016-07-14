@@ -4,7 +4,7 @@ configuration: Release
 environment:
   TestDb: Server=(local)\SQL2016;Database=efrepositorytest;User ID=sa;Password=Password12!
   SONAR_TOKEN:
-    secure: ZoyNs0cPMwqpfGuk0Az0vghQNOmpHqhDNRfh4Aa8ImnNGzCPlLtHhAFW3XhW9w7y
+    secure: obPgeJ9AhOuWX6WhYKEQGKxiiMT6nZZbPrHnIKRPr9vE1Mg1BHv2TxBrgHBUPjGG
 
 services:
   - mssql2016
