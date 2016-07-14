@@ -1,0 +1,2 @@
+@echo off
+MSBuild.SonarQube.Runner.exe begin /k:EFRepository /n:EFRepository /d:sonar.host.url=https://sonarqube.com /d:sonar.login=%SONAR_TOKEN% /d:sonar.cs.opencover.reportsPaths="%CD%\CodeCoverage.xml" /version:%APPVEYOR_BUILD_NUMBER%

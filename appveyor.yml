@@ -4,7 +4,9 @@ configuration: Release
 environment:
   TestDb: Server=(local)\SQL2016;Database=efrepositorytest;User ID=sa;Password=Password12!
   SONAR_TOKEN:
-    secure: ZoyNs0cPMwqpfGuk0Az0vghQNOmpHqhDNRfh4Aa8ImnNGzCPlLtHhAFW3XhW9w7y
+    secure: obPgeJ9AhOuWX6WhYKEQGKxiiMT6nZZbPrHnIKRPr9vE1Mg1BHv2TxBrgHBUPjGG
+  GITHUB_TOKEN:
+    secure: /UVGIQ+lnYVzqxMd+Ka+785GKx+EWix/ePwUs1nHCED/5aS9j/z8CVFlDuvbVj4f
 
 services:
   - mssql2016
@@ -27,7 +29,8 @@ install:
 
 before_build:
   - nuget restore
-  - MSBuild.SonarQube.Runner.exe begin /k:EFRepository /n:EFRepository /d:sonar.host.url=https://sonarqube.com /d:sonar.login=%SONAR_TOKEN% /d:sonar.cs.opencover.reportsPaths="%CD%\CodeCoverage.xml" /version:%APPVEYOR_BUILD_NUMBER%
+  - ps: if (-Not $env:APPVEYOR_PULL_REQUEST_NUMBER) { .\tools\build.bat }
+  - ps: if ($env:APPVEYOR_PULL_REQUEST_NUMBER) { .\tools\buildpr.bat }
 
 build:
   parallel: true
