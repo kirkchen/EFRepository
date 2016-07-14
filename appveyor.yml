@@ -3,6 +3,8 @@ configuration: Release
 
 environment:
   TestDb: Server=(local)\SQL2016;Database=efrepositorytest;User ID=sa;Password=Password12!
+  SONAR_TOKEN:
+    secure: obPgeJ9AhOuWX6WhYKEQGKxiiMT6nZZbPrHnIKRPr9vE1Mg1BHv2TxBrgHBUPjGG
 
 services:
   - mssql2016
@@ -20,8 +22,12 @@ assembly_info:
   assembly_file_version: "{version}"
   assembly_informational_version: "{version}"
 
+install:
+  - cinst msbuild-sonarqube-runner
+
 before_build:
   - nuget restore
+  - ps: if (-Not $env:APPVEYOR_PULL_REQUEST_NUMBER) { .\tools\build.bat }
 
 build:
   parallel: true
@@ -31,3 +37,6 @@ build:
 
 test_script:  
   - packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:vstest.console.exe -targetargs:"/logger:Appveyor EFRepository.Tests\bin\Release\EFRepository.Tests.dll" -output:CodeCoverage.xml
+
+after_test:
+  - ps: if (-Not $env:APPVEYOR_PULL_REQUEST_NUMBER) { .\tools\buildfinish.bat }

@@ -1,6 +1,7 @@
 # EFRepository
 
 [![Build status](https://ci.appveyor.com/api/projects/status/vriyn5ano6rvqarb?svg=true)](https://ci.appveyor.com/project/kirkchen/efrepository)
+[![Code Coverage](http://sonarcovbadge.epicapp.com/?server=sonarqube.com&resource=EFRepository&metrics=coverage&ssl=true)](https://sonarqube.com/overview?id=EFRepository)
 
 Generic repository and pattern "Unit of work" for Entity framework
 
