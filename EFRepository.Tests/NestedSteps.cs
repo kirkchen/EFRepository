@@ -1,4 +1,5 @@
-﻿using EFRepository.Tests.TestClasses;
+﻿using EFRepository.Hooks;
+using EFRepository.Tests.TestClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,7 +84,13 @@ namespace EFRepository.Tests
                 dbContext.NestedLevel2Datas.AddRange(dataList);
                 dbContext.SaveChanges();
             }
-        }        
+        }
+
+        [Given(@"Register nested data update hook in generic repository")]
+        public void GivenRegisterNestedDataUpdateHookInGenericRepository()
+        {            
+            this.Repository.RegisterPostActionHook(new NestedDataPostUpdateHook<NestedData>());
+        }
 
         [When(@"I use generic repository to add data")]
         public void WhenIUseGenericRepositoryToAddData()

@@ -35,6 +35,14 @@ namespace EFRepository
         public ICollection<IPostDeleteHook<TEntity>> PostDeleteHooks { get; set; }
 
         /// <summary>
+        /// Gets or sets the post update hooks.
+        /// </summary>
+        /// <value>
+        /// The post update hooks.
+        /// </value>
+        public ICollection<IPostUpdateHook<TEntity>> PostUpdateHooks { get; set; }
+
+        /// <summary>
         /// Gets or sets the post load hooks.
         /// </summary>
         /// <value>
@@ -50,6 +58,7 @@ namespace EFRepository
         {
             this.DbContext = context;
             this.PostDeleteHooks = new List<IPostDeleteHook<TEntity>>();
+            this.PostUpdateHooks = new List<IPostUpdateHook<TEntity>>();
             this.PostLoadHooks = new List<IPostLoadHook<TEntity>>();
         }
 
@@ -72,7 +81,12 @@ namespace EFRepository
             {
                 var deleleHook = hook as IPostDeleteHook<TEntity>;
                 this.PostDeleteHooks.Add(deleleHook);
-            }            
+            }
+            else if (hook is IPostUpdateHook<TEntity>)
+            {
+                var updateHook = hook as IPostUpdateHook<TEntity>;
+                this.PostUpdateHooks.Add(updateHook);
+            }
         }
 
         /// <summary>
@@ -190,37 +204,19 @@ namespace EFRepository
         /// <param name="data">The data.</param>
         public virtual void Update(TEntity data)
         {            
-            this.DbContext.Set<TEntity>().Attach(data);
-
-            var datatype = typeof(TEntity);
+            this.DbContext.Set<TEntity>().Attach(data);         
 
             var entry = this.DbContext.Entry(data);
             entry.State = EntityState.Modified;
 
-            TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(datatype), datatype);
-            var properties = TypeDescriptor.GetProperties(datatype);
-
-            foreach (PropertyDescriptor property in properties)
+            foreach (var hook in this.PostUpdateHooks)
             {
-                var isChildList = property.PropertyType.GetInterfaces()
-                                                       .Any(t => t.IsGenericType
-                                                                 && t.GetGenericTypeDefinition() == typeof(IEnumerable<>));
-                isChildList = isChildList && property.PropertyType.IsGenericType;
-                if (!isChildList)
+                hook.Execute(data, new HookContext()
                 {
-                    continue;
-                }
-
-                var childType = property.PropertyType.GenericTypeArguments[0];
-                var children = property.GetValue(data) as IEnumerable;
-                foreach (var child in children)
-                {
-                    this.DbContext.Set(childType).Attach(child);
-
-                    var childEntry = this.DbContext.Entry(child);
-                    childEntry.State = EntityState.Modified;
-                }
-            }                              
+                    DbContext = this.DbContext,
+                    Entity = data
+                });
+            };
         }
 
         /// <summary>
