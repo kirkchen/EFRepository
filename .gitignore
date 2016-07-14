@@ -38,6 +38,9 @@ TestResult.xml
 # OpenCover
 CodeCoverage.xml
 
+# SonarQube
+.sonarqube/
+
 # Build Results of an ATL Project
 [Dd]ebugPS/
 [Rr]eleasePS/
