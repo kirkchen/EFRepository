@@ -59,7 +59,7 @@ namespace EFRepository.Tests
         public void GivenRegisterSoftDeleteHookInGenericRepository()
         {
             this.Repository.RegisterPostLoadHook(new SoftDeletePostLoadHook<SoftDeleteData>());
-            this.Repository.RegisterPostActionHook(new SoftDeletePostActionHook<SoftDeleteData>());
+            this.Repository.RegisterPostActionHook(new SoftDeletePostDeleteHook<SoftDeleteData>());
         }
 
         [Given(@"test datas content field should contains ""(.*)""")]

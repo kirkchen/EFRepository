@@ -52,8 +52,9 @@
     <Compile Include="GenericRepository.cs" />
     <Compile Include="Hooks\HookContext.cs" />
     <Compile Include="Hooks\IPostActionHook.cs" />
+    <Compile Include="Hooks\IPostDeleteHook.cs" />
     <Compile Include="Hooks\IPostLoadHook.cs" />
-    <Compile Include="Hooks\SoftDeletePostActionHook.cs" />
+    <Compile Include="Hooks\SoftDeletePostDeleteHook.cs" />
     <Compile Include="Hooks\SoftDeletePostLoadHook.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="IRepository.cs" />

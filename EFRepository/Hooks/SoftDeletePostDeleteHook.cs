@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EFRepository.Hooks
 {
-    public class SoftDeletePostActionHook<TEntity> : IPostActionHook<TEntity> where TEntity : class
+    public class SoftDeletePostDeleteHook<TEntity> : IPostDeleteHook<TEntity> where TEntity : class
     {
         public void Execute(TEntity entity, HookContext context)
         {

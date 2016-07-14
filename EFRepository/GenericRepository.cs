@@ -32,7 +32,7 @@ namespace EFRepository
         /// <value>
         /// The post action hooks.
         /// </value>
-        public ICollection<IPostActionHook<TEntity>> PostActionHooks { get; set; }
+        public ICollection<IPostDeleteHook<TEntity>> PostDeleteHooks { get; set; }
 
         /// <summary>
         /// Gets or sets the post load hooks.
@@ -49,7 +49,7 @@ namespace EFRepository
         public GenericRepository(DbContext context)
         {
             this.DbContext = context;
-            this.PostActionHooks = new List<IPostActionHook<TEntity>>();
+            this.PostDeleteHooks = new List<IPostDeleteHook<TEntity>>();
             this.PostLoadHooks = new List<IPostLoadHook<TEntity>>();
         }
 
@@ -68,7 +68,11 @@ namespace EFRepository
         /// <param name="hook">The hook.</param>
         public void RegisterPostActionHook(IPostActionHook<TEntity> hook)
         {
-            this.PostActionHooks.Add(hook);
+            if(hook is IPostDeleteHook<TEntity>)
+            {
+                var deleleHook = hook as IPostDeleteHook<TEntity>;
+                this.PostDeleteHooks.Add(deleleHook);
+            }            
         }
 
         /// <summary>
@@ -185,8 +189,13 @@ namespace EFRepository
         /// </summary>
         /// <param name="data">The data.</param>
         public virtual void Update(TEntity data)
-        {
+        {            
+            this.DbContext.Set<TEntity>().Attach(data);
+
             var datatype = typeof(TEntity);
+
+            var entry = this.DbContext.Entry(data);
+            entry.State = EntityState.Modified;
 
             TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(datatype), datatype);
             var properties = TypeDescriptor.GetProperties(datatype);
@@ -211,12 +220,7 @@ namespace EFRepository
                     var childEntry = this.DbContext.Entry(child);
                     childEntry.State = EntityState.Modified;
                 }
-            }
-
-            this.DbContext.Set<TEntity>().Attach(data);
-
-            var entry = this.DbContext.Entry(data);
-            entry.State = EntityState.Modified;                  
+            }                              
         }
 
         /// <summary>
@@ -230,7 +234,7 @@ namespace EFRepository
             this.DbContext.Set<TEntity>()
                           .Remove(data);
 
-            foreach (var hook in this.PostActionHooks)
+            foreach (var hook in this.PostDeleteHooks)
             {
                 hook.Execute(data, new HookContext()
                 {
