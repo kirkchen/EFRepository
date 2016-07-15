@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 namespace EFRepository.Tests.TestClasses
 {
     /// <summary>
-    /// NestedData
+    /// NestedLevel3Data
     /// </summary>
     /// <seealso cref="EFRepository.IEntity{System.Int32}" />
-    public class NestedData : IEntity<int>
+    public class NestedLevel3Data : IEntity<int>
     {
         /// <summary>
         /// Gets or sets the identifier.
@@ -33,11 +33,20 @@ namespace EFRepository.Tests.TestClasses
         public string Content { get; set; }
 
         /// <summary>
-        /// Gets or sets the children.
+        /// Gets or sets the parent identifier.
         /// </summary>
         /// <value>
-        /// The children.
+        /// The parent identifier.
         /// </value>
-        public virtual ICollection<NestedLevel2Data> Children { get; set; }
+        public int? ParentId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the parent.
+        /// </summary>
+        /// <value>
+        /// The parent.
+        /// </value>
+        [ForeignKey("ParentId")]
+        public NestedLevel2Data Parent { get; set; }
     }
 }

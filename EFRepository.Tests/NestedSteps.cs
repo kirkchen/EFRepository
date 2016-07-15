@@ -86,6 +86,34 @@ namespace EFRepository.Tests
             }
         }
 
+        [Given(@"database has nested level 3 data")]
+        public void GivenDatabaseHasNestedLevel3Data(Table table)
+        {
+            var dataList = table.CreateSet<NestedLevel3Data>();
+
+            using (var dbContext = new TestDbContext(this.ConnectionString))
+            {
+                dbContext.NestedLevel3Datas.AddRange(dataList);
+                dbContext.SaveChanges();
+            }      
+        }
+
+        [Given(@"the nested data with id ""(.*)"" and nested level 2 data with id ""(.*)"" has level 3 data")]
+        public void GivenTheNestedDataWithIdAndNestedLevelDataWithIdHasLevelData(int id, int childId, Table table)
+        {
+            var level3Datas = table.CreateSet<NestedLevel3Data>();
+            var level1data = this.DataList.Where(i => i.Id == id)
+                                          .First();
+            var level2data = level1data.Children.Where(i => i.Id == childId)
+                                                .First();
+
+            level2data.Children = new List<NestedLevel3Data>();
+            foreach (var level3data in level3Datas)
+            {
+                level2data.Children.Add(level3data);
+            }
+        }       
+
         [Given(@"Register nested data update hook in generic repository")]
         public void GivenRegisterNestedDataUpdateHookInGenericRepository()
         {            
@@ -134,5 +162,15 @@ namespace EFRepository.Tests
             }
         }
 
+        [Then(@"database should exists nested level 3 datas")]
+        public void ThenDatabaseShouldExistsNestedLevel3Datas(Table table)
+        {
+            using (var dbContext = new TestDbContext(this.ConnectionString))
+            {
+                var datalist = dbContext.NestedLevel3Datas.ToList();
+
+                table.CompareToSet(datalist);
+            }
+        }
     }
 }

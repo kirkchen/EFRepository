@@ -24,7 +24,20 @@ namespace EFRepository.Hooks
         /// <param name="context">The context.</param>
         public void Execute(TEntity entity, HookContext context)
         {
-            var datatype = typeof(TEntity);            
+            var dbContext = context.DbContext;
+
+            //// Set children state
+            this.SetEntityState(entity, dbContext);
+        }
+
+        /// <summary>
+        /// Sets the state of the entity.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <param name="dbContext">The database context.</param>
+        private void SetEntityState(object entity, DbContext dbContext)
+        {            
+            var datatype = entity.GetType();
 
             TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(datatype), datatype);
             var properties = TypeDescriptor.GetProperties(datatype);
@@ -42,11 +55,18 @@ namespace EFRepository.Hooks
 
                 var childType = property.PropertyType.GenericTypeArguments[0];
                 var children = property.GetValue(entity) as IEnumerable;
+                if(children == null)
+                {
+                    continue;                        
+                }
+
                 foreach (var child in children)
                 {
-                    context.DbContext.Set(childType).Attach(child);
+                    this.SetEntityState(child, dbContext);
 
-                    var childEntry = context.DbContext.Entry(child);
+                    dbContext.Set(childType).Attach(child);
+
+                    var childEntry = dbContext.Entry(child);
                     childEntry.State = EntityState.Modified;
                 }
             }

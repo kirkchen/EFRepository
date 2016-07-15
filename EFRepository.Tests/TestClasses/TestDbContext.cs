@@ -52,5 +52,13 @@ namespace EFRepository.Tests.TestClasses
         /// The nested level2 datas.
         /// </value>
         public DbSet<NestedLevel2Data> NestedLevel2Datas { get; set; }
+
+        /// <summary>
+        /// Gets or sets the nested level3 datas.
+        /// </summary>
+        /// <value>
+        /// The nested level3 datas.
+        /// </value>
+        public DbSet<NestedLevel3Data> NestedLevel3Datas { get; set; }
     }
 }

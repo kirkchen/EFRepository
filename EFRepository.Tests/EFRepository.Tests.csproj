@@ -83,6 +83,7 @@
     </Compile>
     <Compile Include="SoftDeleteSteps.cs" />
     <Compile Include="TestClasses\NestedData.cs" />
+    <Compile Include="TestClasses\NestedLevel3Data.cs" />
     <Compile Include="TestClasses\NestedLevel2Data.cs" />
     <Compile Include="TestClasses\NestedRepository.cs" />
     <Compile Include="TestClasses\SoftDeleteData.cs" />
