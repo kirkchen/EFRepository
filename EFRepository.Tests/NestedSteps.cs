@@ -117,7 +117,7 @@ namespace EFRepository.Tests
         [Given(@"Register nested data update hook in generic repository")]
         public void GivenRegisterNestedDataUpdateHookInGenericRepository()
         {            
-            this.Repository.RegisterPostActionHook(new NestedDataPostUpdateHook<NestedData>());
+            this.Repository.RegisterPreActionHook(new NestedDataPreUpdateHook<NestedData>());
         }
 
         [When(@"I use generic repository to add data")]

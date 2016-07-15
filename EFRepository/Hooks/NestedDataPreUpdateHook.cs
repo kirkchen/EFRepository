@@ -14,8 +14,8 @@ namespace EFRepository.Hooks
     /// NestedDataPostUpdateHook
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
-    /// <seealso cref="EFRepository.Hooks.IPostUpdateHook{TEntity}" />
-    public class NestedDataPostUpdateHook<TEntity> : IPostUpdateHook<TEntity> where TEntity : class
+    /// <seealso cref="EFRepository.Hooks.IPreUpdateHook{TEntity}" />
+    public class NestedDataPreUpdateHook<TEntity> : IPreUpdateHook<TEntity> where TEntity : class
     {
         /// <summary>
         /// Executes the specified entity.
@@ -36,7 +36,7 @@ namespace EFRepository.Hooks
         /// <param name="entity">The entity.</param>
         /// <param name="dbContext">The database context.</param>
         private void SetEntityState(object entity, DbContext dbContext)
-        {            
+        {
             var datatype = entity.GetType();
 
             TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(datatype), datatype);
@@ -55,19 +55,29 @@ namespace EFRepository.Hooks
 
                 var childType = property.PropertyType.GenericTypeArguments[0];
                 var children = property.GetValue(entity) as IEnumerable;
-                if(children == null)
+                if (children == null)
                 {
-                    continue;                        
+                    continue;
                 }
 
+                var childSet = dbContext.Set(childType);
                 foreach (var child in children)
                 {
-                    this.SetEntityState(child, dbContext);
+                    this.SetEntityState(child, dbContext);                    
 
-                    dbContext.Set(childType).Attach(child);
+                    var idProperty = childType.GetProperty("Id");
+                    var idValue = idProperty.GetValue(child);
 
-                    var childEntry = dbContext.Entry(child);
-                    childEntry.State = EntityState.Modified;
+                    var childEntry = dbContext.Entry(child);                                        
+                    if (idValue == null || idValue.Equals(Activator.CreateInstance(idProperty.PropertyType)))
+                    {                        
+                        childEntry.State = EntityState.Added;
+                    }
+                    else
+                    {
+                        childSet.Attach(child);
+                        childEntry.State = EntityState.Modified;
+                    }
                 }
             }
         }

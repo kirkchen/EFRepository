@@ -40,7 +40,7 @@ namespace EFRepository
         /// <value>
         /// The post update hooks.
         /// </value>
-        public ICollection<IPostUpdateHook<TEntity>> PostUpdateHooks { get; set; }
+        public ICollection<IPreUpdateHook<TEntity>> PreUpdateHooks { get; set; }
 
         /// <summary>
         /// Gets or sets the post load hooks.
@@ -58,7 +58,7 @@ namespace EFRepository
         {
             this.DbContext = context;
             this.PostDeleteHooks = new List<IPostDeleteHook<TEntity>>();
-            this.PostUpdateHooks = new List<IPostUpdateHook<TEntity>>();
+            this.PreUpdateHooks = new List<IPreUpdateHook<TEntity>>();
             this.PostLoadHooks = new List<IPostLoadHook<TEntity>>();
         }
 
@@ -81,13 +81,22 @@ namespace EFRepository
             {
                 var deleleHook = hook as IPostDeleteHook<TEntity>;
                 this.PostDeleteHooks.Add(deleleHook);
-            }
-            else if (hook is IPostUpdateHook<TEntity>)
+            }            
+        }
+
+        /// <summary>
+        /// Registers the post action hook.
+        /// </summary>
+        /// <param name="hook">The hook.</param>
+        public void RegisterPreActionHook(IPreActionHook<TEntity> hook)
+        {
+            if (hook is IPreUpdateHook<TEntity>)
             {
-                var updateHook = hook as IPostUpdateHook<TEntity>;
-                this.PostUpdateHooks.Add(updateHook);
+                var updateHook = hook as IPreUpdateHook<TEntity>;
+                this.PreUpdateHooks.Add(updateHook);
             }
         }
+
 
         /// <summary>
         /// Adds the specified data.
@@ -203,13 +212,8 @@ namespace EFRepository
         /// </summary>
         /// <param name="data">The data.</param>
         public virtual void Update(TEntity data)
-        {            
-            this.DbContext.Set<TEntity>().Attach(data);         
-
-            var entry = this.DbContext.Entry(data);
-            entry.State = EntityState.Modified;
-
-            foreach (var hook in this.PostUpdateHooks)
+        {                        
+            foreach (var hook in this.PreUpdateHooks)
             {
                 hook.Execute(data, new HookContext()
                 {
@@ -217,6 +221,11 @@ namespace EFRepository
                     Entity = data
                 });
             };
+
+            this.DbContext.Set<TEntity>().Attach(data);
+
+            var entry = this.DbContext.Entry(data);
+            entry.State = EntityState.Modified;
         }
 
         /// <summary>

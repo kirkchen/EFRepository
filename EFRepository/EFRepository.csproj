@@ -51,11 +51,12 @@
   <ItemGroup>
     <Compile Include="GenericRepository.cs" />
     <Compile Include="Hooks\HookContext.cs" />
+    <Compile Include="Hooks\IPreActionHook.cs" />
     <Compile Include="Hooks\IPostActionHook.cs" />
-    <Compile Include="Hooks\IPostUpdateHook.cs" />
+    <Compile Include="Hooks\IPreUpdateHook.cs" />
     <Compile Include="Hooks\IPostDeleteHook.cs" />
     <Compile Include="Hooks\IPostLoadHook.cs" />
-    <Compile Include="Hooks\NestedDataPostUpdateHook.cs" />
+    <Compile Include="Hooks\NestedDataPreUpdateHook.cs" />
     <Compile Include="Hooks\SoftDeletePostDeleteHook.cs" />
     <Compile Include="Hooks\SoftDeletePostLoadHook.cs" />
     <Compile Include="IEntity.cs" />

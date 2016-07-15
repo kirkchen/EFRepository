@@ -214,13 +214,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Update 3 level nested data\'s child data which is exists in database should be suc" +
-            "cess")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Update nested data\'s with additional child data should be success")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Nested")]
-        public virtual void Update3LevelNestedDataSChildDataWhichIsExistsInDatabaseShouldBeSuccess()
+        public virtual void UpdateNestedDataSWithAdditionalChildDataShouldBeSuccess()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update 3 level nested data\'s child data which is exists in database should be suc" +
-                    "cess", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update nested data\'s with additional child data should be success", ((string[])(null)));
 #line 50
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -250,63 +248,73 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
-                        "Content",
-                        "ParentId"});
+                        "Content"});
             table13.AddRow(new string[] {
                         "1",
-                        "Level 3 Data",
-                        "1"});
-            table13.AddRow(new string[] {
-                        "2",
-                        "Level 3 Data 2",
-                        "1"});
+                        "TestData"});
 #line 58
- testRunner.And("database has nested level 3 data", ((string)(null)), table13, "And ");
+ testRunner.And("I have nested datas", ((string)(null)), table13, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
-                        "Content"});
-            table14.AddRow(new string[] {
-                        "1",
-                        "TestData"});
-#line 62
- testRunner.And("I have nested datas", ((string)(null)), table14, "And ");
-#line hidden
-            TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Id",
                         "Content",
                         "ParentId"});
-            table15.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "1",
                         "Level 2 Data",
                         "1"});
-            table15.AddRow(new string[] {
+            table14.AddRow(new string[] {
                         "2",
                         "Level 2 Data 2",
                         "1"});
-#line 65
- testRunner.And("the nested data with id \"1\" has level 2 data", ((string)(null)), table15, "And ");
+            table14.AddRow(new string[] {
+                        "",
+                        "Level 2 Data 3",
+                        "1"});
+#line 61
+ testRunner.And("the nested data with id \"1\" has level 2 data", ((string)(null)), table14, "And ");
+#line 66
+ testRunner.And("Register nested data update hook in generic repository", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 67
+ testRunner.When("I use generic repository update data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 68
+ testRunner.And("I save the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content"});
+            table15.AddRow(new string[] {
+                        "1",
+                        "TestData"});
+#line 69
+ testRunner.Then("database should exists nested datas", ((string)(null)), table15, "Then ");
 #line hidden
             TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
-                        "Content",
-                        "ParentId"});
+                        "Content"});
             table16.AddRow(new string[] {
                         "1",
-                        "Level 3 Data",
-                        "1"});
+                        "Level 2 Data"});
             table16.AddRow(new string[] {
                         "2",
-                        "Level 3 Data 2222",
-                        "1"});
-#line 69
- testRunner.And("the nested data with id \"1\" and nested level 2 data with id \"1\" has level 3 data", ((string)(null)), table16, "And ");
-#line 73
- testRunner.And("Register nested data update hook in generic repository", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 74
- testRunner.When("I use generic repository update data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 75
- testRunner.And("I save the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                        "Level 2 Data 2"});
+            table16.AddRow(new string[] {
+                        "3",
+                        "Level 2 Data 3"});
+#line 72
+ testRunner.And("database should exists nested level 2 datas", ((string)(null)), table16, "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Update nested data\'s with two additional child data should be success")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Nested")]
+        public virtual void UpdateNestedDataSWithTwoAdditionalChildDataShouldBeSuccess()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update nested data\'s with two additional child data should be success", ((string[])(null)));
+#line 78
+this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
@@ -314,32 +322,219 @@ this.ScenarioSetup(scenarioInfo);
             table17.AddRow(new string[] {
                         "1",
                         "TestData"});
-#line 76
- testRunner.Then("database should exists nested datas", ((string)(null)), table17, "Then ");
+#line 79
+ testRunner.Given("database has nested datas", ((string)(null)), table17, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
-                        "Content"});
+                        "Content",
+                        "ParentId"});
             table18.AddRow(new string[] {
                         "1",
-                        "Level 2 Data"});
+                        "Level 2 Data",
+                        "1"});
             table18.AddRow(new string[] {
                         "2",
-                        "Level 2 Data 2"});
-#line 79
- testRunner.And("database should exists nested level 2 datas", ((string)(null)), table18, "And ");
+                        "Level 2 Data 2",
+                        "1"});
+#line 82
+ testRunner.And("database has nested level 2 data", ((string)(null)), table18, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
                         "Content"});
             table19.AddRow(new string[] {
                         "1",
+                        "TestData"});
+#line 86
+ testRunner.And("I have nested datas", ((string)(null)), table19, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content",
+                        "ParentId"});
+            table20.AddRow(new string[] {
+                        "1",
+                        "Level 2 Data",
+                        "1"});
+            table20.AddRow(new string[] {
+                        "2",
+                        "Level 2 Data 2",
+                        "1"});
+            table20.AddRow(new string[] {
+                        "",
+                        "Level 2 Data 3",
+                        "1"});
+            table20.AddRow(new string[] {
+                        "",
+                        "Level 2 Data 4",
+                        "1"});
+#line 89
+ testRunner.And("the nested data with id \"1\" has level 2 data", ((string)(null)), table20, "And ");
+#line 95
+ testRunner.And("Register nested data update hook in generic repository", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 96
+ testRunner.When("I use generic repository update data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 97
+ testRunner.And("I save the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content"});
+            table21.AddRow(new string[] {
+                        "1",
+                        "TestData"});
+#line 98
+ testRunner.Then("database should exists nested datas", ((string)(null)), table21, "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content"});
+            table22.AddRow(new string[] {
+                        "1",
+                        "Level 2 Data"});
+            table22.AddRow(new string[] {
+                        "2",
+                        "Level 2 Data 2"});
+            table22.AddRow(new string[] {
+                        "3",
+                        "Level 2 Data 3"});
+            table22.AddRow(new string[] {
+                        "4",
+                        "Level 2 Data 4"});
+#line 101
+ testRunner.And("database should exists nested level 2 datas", ((string)(null)), table22, "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Update 3 level nested data\'s child data which is exists in database should be suc" +
+            "cess")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Nested")]
+        public virtual void Update3LevelNestedDataSChildDataWhichIsExistsInDatabaseShouldBeSuccess()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update 3 level nested data\'s child data which is exists in database should be suc" +
+                    "cess", ((string[])(null)));
+#line 108
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content"});
+            table23.AddRow(new string[] {
+                        "1",
+                        "TestData"});
+#line 109
+ testRunner.Given("database has nested datas", ((string)(null)), table23, "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content",
+                        "ParentId"});
+            table24.AddRow(new string[] {
+                        "1",
+                        "Level 2 Data",
+                        "1"});
+            table24.AddRow(new string[] {
+                        "2",
+                        "Level 2 Data 2",
+                        "1"});
+#line 112
+ testRunner.And("database has nested level 2 data", ((string)(null)), table24, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content",
+                        "ParentId"});
+            table25.AddRow(new string[] {
+                        "1",
+                        "Level 3 Data",
+                        "1"});
+            table25.AddRow(new string[] {
+                        "2",
+                        "Level 3 Data 2",
+                        "1"});
+#line 116
+ testRunner.And("database has nested level 3 data", ((string)(null)), table25, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content"});
+            table26.AddRow(new string[] {
+                        "1",
+                        "TestData"});
+#line 120
+ testRunner.And("I have nested datas", ((string)(null)), table26, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content",
+                        "ParentId"});
+            table27.AddRow(new string[] {
+                        "1",
+                        "Level 2 Data",
+                        "1"});
+            table27.AddRow(new string[] {
+                        "2",
+                        "Level 2 Data 2",
+                        "1"});
+#line 123
+ testRunner.And("the nested data with id \"1\" has level 2 data", ((string)(null)), table27, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content",
+                        "ParentId"});
+            table28.AddRow(new string[] {
+                        "1",
+                        "Level 3 Data",
+                        "1"});
+            table28.AddRow(new string[] {
+                        "2",
+                        "Level 3 Data 2222",
+                        "1"});
+#line 127
+ testRunner.And("the nested data with id \"1\" and nested level 2 data with id \"1\" has level 3 data", ((string)(null)), table28, "And ");
+#line 131
+ testRunner.And("Register nested data update hook in generic repository", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 132
+ testRunner.When("I use generic repository update data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 133
+ testRunner.And("I save the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content"});
+            table29.AddRow(new string[] {
+                        "1",
+                        "TestData"});
+#line 134
+ testRunner.Then("database should exists nested datas", ((string)(null)), table29, "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content"});
+            table30.AddRow(new string[] {
+                        "1",
+                        "Level 2 Data"});
+            table30.AddRow(new string[] {
+                        "2",
+                        "Level 2 Data 2"});
+#line 137
+ testRunner.And("database should exists nested level 2 datas", ((string)(null)), table30, "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Content"});
+            table31.AddRow(new string[] {
+                        "1",
                         "Level 3 Data"});
-            table19.AddRow(new string[] {
+            table31.AddRow(new string[] {
                         "2",
                         "Level 3 Data 2222"});
-#line 83
- testRunner.And("database should exists nested level 3 datas", ((string)(null)), table19, "And ");
+#line 141
+ testRunner.And("database should exists nested level 3 datas", ((string)(null)), table31, "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -350,83 +545,83 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void UpdateNestedDataSParentDataWhichIsExistsInDatabaseShouldBeSuccess()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update nested data\'s parent data which is exists in database should be success", ((string[])(null)));
-#line 88
+#line 146
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
                         "Content"});
-            table20.AddRow(new string[] {
+            table32.AddRow(new string[] {
                         "1",
                         "TestData"});
-#line 89
- testRunner.Given("database has nested datas", ((string)(null)), table20, "Given ");
+#line 147
+ testRunner.Given("database has nested datas", ((string)(null)), table32, "Given ");
 #line hidden
-            TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
                         "Content",
                         "ParentId"});
-            table21.AddRow(new string[] {
+            table33.AddRow(new string[] {
                         "1",
                         "Level 2 Data",
                         "1"});
-            table21.AddRow(new string[] {
+            table33.AddRow(new string[] {
                         "2",
                         "Level 2 Data 2",
                         "1"});
-#line 92
- testRunner.And("database has nested level 2 data", ((string)(null)), table21, "And ");
+#line 150
+ testRunner.And("database has nested level 2 data", ((string)(null)), table33, "And ");
 #line hidden
-            TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table34 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
                         "Content"});
-            table22.AddRow(new string[] {
+            table34.AddRow(new string[] {
                         "1",
                         "TestData Modified"});
-#line 96
- testRunner.And("I have nested datas", ((string)(null)), table22, "And ");
+#line 154
+ testRunner.And("I have nested datas", ((string)(null)), table34, "And ");
 #line hidden
-            TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
                         "Content",
                         "ParentId"});
-            table23.AddRow(new string[] {
+            table35.AddRow(new string[] {
                         "1",
                         "Level 2 Data",
                         "1"});
-            table23.AddRow(new string[] {
+            table35.AddRow(new string[] {
                         "2",
                         "Level 2 Data 2",
                         "1"});
-#line 99
- testRunner.And("the nested data with id \"1\" has level 2 data", ((string)(null)), table23, "And ");
-#line 103
+#line 157
+ testRunner.And("the nested data with id \"1\" has level 2 data", ((string)(null)), table35, "And ");
+#line 161
  testRunner.And("Register nested data update hook in generic repository", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 104
+#line 162
  testRunner.When("I use generic repository update data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 105
+#line 163
  testRunner.And("I save the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-            TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
                         "Content"});
-            table24.AddRow(new string[] {
+            table36.AddRow(new string[] {
                         "1",
                         "TestData Modified"});
-#line 106
- testRunner.Then("database should exists nested datas", ((string)(null)), table24, "Then ");
+#line 164
+ testRunner.Then("database should exists nested datas", ((string)(null)), table36, "Then ");
 #line hidden
-            TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
                         "Content"});
-            table25.AddRow(new string[] {
+            table37.AddRow(new string[] {
                         "1",
                         "Level 2 Data"});
-            table25.AddRow(new string[] {
+            table37.AddRow(new string[] {
                         "2",
                         "Level 2 Data 2"});
-#line 109
- testRunner.And("database should exists nested level 2 datas", ((string)(null)), table25, "And ");
+#line 167
+ testRunner.And("database should exists nested level 2 datas", ((string)(null)), table37, "And ");
 #line hidden
             this.ScenarioCleanup();
         }
