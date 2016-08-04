@@ -30,6 +30,7 @@ install:
 before_build:
   - nuget restore
   - ps: if (-Not $env:APPVEYOR_PULL_REQUEST_NUMBER) { .\tools\build.bat } else { .\tools\buildpullrequest.bat }
+  - echo %APPVEYOR_PULL_REQUEST_NUMBER%
 
 build:
   parallel: true
