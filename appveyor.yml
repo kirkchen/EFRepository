@@ -5,6 +5,8 @@ environment:
   TestDb: Server=(local)\SQL2016;Database=efrepositorytest;User ID=sa;Password=Password12!
   SONAR_TOKEN:
     secure: obPgeJ9AhOuWX6WhYKEQGKxiiMT6nZZbPrHnIKRPr9vE1Mg1BHv2TxBrgHBUPjGG
+  GITHUB_TOKEN:
+    secure: 2twQhN/Fz0V2Bff+6mTbEgDzq0LFtGq5ydBmGvGEJG6Lv2jN3nOi+cgfQO0NsZwL
 
 services:
   - mssql2016
@@ -27,7 +29,7 @@ install:
 
 before_build:
   - nuget restore
-  - ps: if (-Not $env:APPVEYOR_PULL_REQUEST_NUMBER) { .\tools\build.bat }
+  - ps: if (-Not $env:APPVEYOR_PULL_REQUEST_NUMBER) { .\tools\build.bat } else { .\tools\buildpullrequest.bat }
 
 build:
   parallel: true
@@ -39,4 +41,4 @@ test_script:
   - packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:vstest.console.exe -targetargs:"/logger:Appveyor EFRepository.Tests\bin\Release\EFRepository.Tests.dll" -output:CodeCoverage.xml
 
 after_test:
-  - ps: if (-Not $env:APPVEYOR_PULL_REQUEST_NUMBER) { .\tools\buildfinish.bat }
+  - .\tools\buildfinish.bat
