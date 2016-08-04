@@ -83,6 +83,8 @@ namespace EFRepository
         /// <param name="datalist">The datalist.</param>
         public virtual void AddRange(IEnumerable<TEntity> datalist)
         {
+            var tempList = new List<string>();
+
             foreach (var data in datalist)
             {
                 this.Add(data);
@@ -105,7 +107,7 @@ namespace EFRepository
                     DbContext = this.DbContext,
                     Entity = query
                 });
-            }
+            };
 
             return query.ToList();
         }
