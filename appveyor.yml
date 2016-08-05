@@ -29,7 +29,8 @@ install:
 
 before_build:
   - nuget restore
-  - ps: if (-Not $env:APPVEYOR_PULL_REQUEST_NUMBER) { .\tools\build.bat } else { .\tools\buildpullrequest.bat }
+  - ps: if (-Not $env:APPVEYOR_PULL_REQUEST_NUMBER -And $env:APPVEYOR_REPO_BRANCH -eq "master") { .\tools\build.bat } 
+  - ps: if ($env:APPVEYOR_PULL_REQUEST_NUMBER) { .\tools\buildpullrequest.bat }
 
 build:
   parallel: true
@@ -41,4 +42,4 @@ test_script:
   - packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:vstest.console.exe -targetargs:"/logger:Appveyor EFRepository.Tests\bin\Release\EFRepository.Tests.dll" -output:CodeCoverage.xml
 
 after_test:
-  - .\tools\buildfinish.bat
+  - ps: if ($env:APPVEYOR_PULL_REQUEST_NUMBER -Or $env:APPVEYOR_REPO_BRANCH -eq "master") { .\tools\buildfinish.bat }
