@@ -49,15 +49,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatetimeHelper.cs" />
     <Compile Include="GenericRepository.cs" />
     <Compile Include="Hooks\HookContext.cs" />
     <Compile Include="Hooks\IPostActionHook.cs" />
     <Compile Include="Hooks\IPostLoadHook.cs" />
     <Compile Include="Hooks\SoftDeletePostActionHook.cs" />
     <Compile Include="Hooks\SoftDeletePostLoadHook.cs" />
+    <Compile Include="Hooks\SystemInfoPostActionHook.cs" />
+    <Compile Include="IDatetimeHelper.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="ISoftDelete.cs" />
+    <Compile Include="ISystemInfo.cs" />
+    <Compile Include="IUserHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
