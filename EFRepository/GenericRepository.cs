@@ -45,7 +45,7 @@ namespace EFRepository
         /// <param name="context">The context.</param>
         public GenericRepository(DbContext context)
         {
-            this.DbContext = context;
+            this.DbContext = context;            
             this.PostActionHooks = new List<IPostActionHook<TEntity>>();
             this.PostLoadHooks = new List<IPostLoadHook<TEntity>>();
         }
@@ -75,6 +75,15 @@ namespace EFRepository
         public virtual void Add(TEntity data)
         {
             this.DbContext.Set<TEntity>().Add(data);
+
+            foreach (var hook in this.PostActionHooks)
+            {
+                hook.Execute(data, new HookContext()
+                {
+                    DbContext = this.DbContext,
+                    Entity = data
+                });
+            }
         }
 
         /// <summary>
@@ -187,6 +196,15 @@ namespace EFRepository
 
             var entry = this.DbContext.Entry(data);
             entry.State = EntityState.Modified;
+
+            foreach (var hook in this.PostActionHooks)
+            {
+                hook.Execute(data, new HookContext()
+                {
+                    DbContext = this.DbContext,
+                    Entity = data
+                });
+            }
         }
 
         /// <summary>

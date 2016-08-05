@@ -111,7 +111,7 @@ Generic repository and pattern "Unit of work" for Entity framework
     - [ ] Hooks Supports
         - [ ] Nested object save changes
         - [x] Soft delete
-        - [ ] Auto system infomation
+        - [x] Auto system infomation
         - [ ] Audit log
         - [ ] Global query filter
 - [ ] Unit of work
