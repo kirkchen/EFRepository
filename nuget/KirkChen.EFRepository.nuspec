@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
-        <id>EFRepository</id>
+        <id>KirkChen.EFRepository</id>
         <version>1.0.0</version>
-        <authors>kirkchen</authors>
+        <title>EFRepository</title>
+        <authors>Kirk Chen</authors>
         <projectUrl>https://github.com/kirkchen/EFRepository</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Generic repository and pattern "Unit of work" for Entity framework.</description>
