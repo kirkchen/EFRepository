@@ -3,7 +3,7 @@
     <metadata>
         <id>KirkChen.EFRepository</id>
         <version>1.0.0</version>
-        <title>EFRepository</title>
+        <title>KirkChen.EFRepository</title>
         <authors>Kirk Chen</authors>
         <projectUrl>https://github.com/kirkchen/EFRepository</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
