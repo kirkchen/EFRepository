@@ -2,6 +2,9 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/vriyn5ano6rvqarb?svg=true)](https://ci.appveyor.com/project/kirkchen/efrepository)
 [![Code Coverage](http://sonarcovbadge.epicapp.com/?server=sonarqube.com&resource=EFRepository&metrics=coverage&ssl=true)](https://sonarqube.com/overview?id=EFRepository)
+[![Technical Debt](https://img.shields.io/sonar/http/sonarqube.com/EFRepository/tech_debt.svg?maxAge=2592000)](https://sonarqube.com/overview?id=EFRepository)
+[![NuGet](https://img.shields.io/nuget/v/KirkChen.EFRepository.svg?maxAge=2592000)](https://www.nuget.org/packages/KirkChen.EFRepository/)
+[![NuGet Pre Release](https://img.shields.io/nuget/vpre/KirkChen.EFRepository.svg?maxAge=2592000)](https://www.nuget.org/packages/KirkChen.EFRepository/)
 
 Generic repository and pattern "Unit of work" for Entity framework
 
@@ -81,8 +84,25 @@ Generic repository and pattern "Unit of work" for Entity framework
 1. Use reository
 
     ``` csharp
+    var dbContext = new MyDbContext();
     var repository = new MyDataRepository(dbContext);
     var myData = repository.Get(1);
+    ```
+
+## Unit of work    
+
+    ``` csharp
+    using(var dbContext = new MyDbContext())
+    using(var unitOfWork = new UnitOfWork(dbContext))
+    {
+        var repository = new MyDataRepository(dbContext);
+        repository.Add(data);
+
+        var anotherRepository = new OtherDataRepository(dbContext);
+        repository.Add(anotherdata);
+
+        unitOfWork.SaveChanges();
+    }
     ```
 
 ## Roadmap
@@ -110,7 +130,7 @@ Generic repository and pattern "Unit of work" for Entity framework
     - [ ] Hooks Supports
         - [ ] Nested object save changes
         - [x] Soft delete
-        - [ ] Auto system infomation
+        - [x] Auto system infomation
         - [ ] Audit log
         - [ ] Global query filter
-- [ ] Unit of work
+- [x] Unit of work
