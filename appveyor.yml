@@ -43,3 +43,19 @@ test_script:
 
 after_test:
   - ps: if ($env:APPVEYOR_PULL_REQUEST_NUMBER -Or $env:APPVEYOR_REPO_BRANCH -eq "master") { .\tools\buildfinish.bat }
+
+before_deploy:
+  - ps: if ($env:APPVEYOR_REPO_BRANCH -eq "develop") { .\tools\packPrereleaseNuget.bat }
+  - ps: if ($env:APPVEYOR_REPO_TAG -And $env:APPVEYOR_REPO_BRANCH -eq "master") { .\tools\packNuget.bat }
+
+deploy:
+  provider: NuGet  
+  api_key:
+    secure: P4/mzIswMzqvWjuucHnGxP5duV/aBk7AnsQpCKp6R+ztVxfRocPsB5dVIIt24OGE
+  skip_symbols: true  
+  artifact: /.*\.nupkg/  
+  on:
+    branch: 
+      - master
+      - develop
+    appveyor_repo_tag: true
