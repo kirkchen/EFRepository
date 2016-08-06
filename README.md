@@ -3,6 +3,8 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/vriyn5ano6rvqarb?svg=true)](https://ci.appveyor.com/project/kirkchen/efrepository)
 [![Code Coverage](http://sonarcovbadge.epicapp.com/?server=sonarqube.com&resource=EFRepository&metrics=coverage&ssl=true)](https://sonarqube.com/overview?id=EFRepository)
 [![Technical Debt](https://img.shields.io/sonar/http/sonarqube.com/EFRepository/tech_debt.svg?maxAge=2592000)](https://sonarqube.com/overview?id=EFRepository)
+[![NuGet](https://img.shields.io/nuget/v/KirkChen.EFRepository.svg?maxAge=2592000)](https://www.nuget.org/packages/KirkChen.EFRepository/)
+[![NuGet Pre Release](https://img.shields.io/nuget/vpre/KirkChen.EFRepository.svg?maxAge=2592000)](https://www.nuget.org/packages/KirkChen.EFRepository/)
 
 Generic repository and pattern "Unit of work" for Entity framework
 
