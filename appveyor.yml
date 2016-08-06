@@ -43,10 +43,11 @@ test_script:
 
 after_test:
   - ps: if ($env:APPVEYOR_PULL_REQUEST_NUMBER -Or $env:APPVEYOR_REPO_BRANCH -eq "master") { .\tools\buildfinish.bat }
-
-before_deploy:
   - ps: if ($env:APPVEYOR_REPO_BRANCH -eq "develop") { .\tools\packPrereleaseNuget.bat }
   - ps: if ($env:APPVEYOR_REPO_TAG -And $env:APPVEYOR_REPO_BRANCH -eq "master") { .\tools\packNuget.bat }
+
+artifacts:
+  - path: 'EFRepository*.nupkg'
 
 deploy:
   - provider: NuGet  
