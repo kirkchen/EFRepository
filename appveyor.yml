@@ -47,7 +47,7 @@ after_test:
   - ps: if ($env:APPVEYOR_REPO_TAG -And $env:APPVEYOR_REPO_BRANCH -eq "master") { .\tools\packNuget.bat }
 
 artifacts:
-  - path: 'EFRepository*.nupkg'
+  - path: 'KirkChen.EFRepository*.nupkg'
 
 deploy:
   - provider: NuGet  
