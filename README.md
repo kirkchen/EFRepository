@@ -82,8 +82,25 @@ Generic repository and pattern "Unit of work" for Entity framework
 1. Use reository
 
     ``` csharp
+    var dbContext = new MyDbContext();
     var repository = new MyDataRepository(dbContext);
     var myData = repository.Get(1);
+    ```
+
+## Unit of work    
+
+    ``` csharp
+    using(var dbContext = new MyDbContext())
+    using(var unitOfWork = new UnitOfWork(dbContext))
+    {
+        var repository = new MyDataRepository(dbContext);
+        repository.Add(data);
+
+        var anotherRepository = new OtherDataRepository(dbContext);
+        repository.Add(anotherdata);
+
+        unitOfWork.SaveChanges();
+    }
     ```
 
 ## Roadmap
@@ -114,4 +131,4 @@ Generic repository and pattern "Unit of work" for Entity framework
         - [x] Auto system infomation
         - [ ] Audit log
         - [ ] Global query filter
-- [ ] Unit of work
+- [x] Unit of work
