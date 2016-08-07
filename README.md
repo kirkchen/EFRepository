@@ -91,19 +91,21 @@ Generic repository and pattern "Unit of work" for Entity framework
 
 ## Unit of work    
 
-    ``` csharp
-    using(var dbContext = new MyDbContext())
-    using(var unitOfWork = new UnitOfWork(dbContext))
-    {
-        var repository = new MyDataRepository(dbContext);
-        repository.Add(data);
+Using unit of work to handle transaction
 
-        var anotherRepository = new OtherDataRepository(dbContext);
-        repository.Add(anotherdata);
+``` csharp
+using(var dbContext = new MyDbContext())
+using(var unitOfWork = new UnitOfWork(dbContext))
+{
+    var repository = new MyDataRepository(dbContext);
+    repository.Add(data);
 
-        unitOfWork.SaveChanges();
-    }
-    ```
+    var anotherRepository = new OtherDataRepository(dbContext);
+    repository.Add(anotherdata);
+
+    unitOfWork.SaveChanges();
+}
+```
 
 ## Roadmap
 
