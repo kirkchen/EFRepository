@@ -71,25 +71,25 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="GenericRepository.feature.cs">
+    <Compile Include="Repositories\GenericRepository.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GenericRepository.feature</DependentUpon>
     </Compile>
-    <Compile Include="GenericRepositorySteps.cs" />
+    <Compile Include="Repositories\GenericRepositorySteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SoftDelete.feature.cs">
+    <Compile Include="Hooks\SoftDelete.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SoftDelete.feature</DependentUpon>
     </Compile>
-    <Compile Include="SoftDeleteSteps.cs" />
-    <Compile Include="SystemInfo.feature.cs">
+    <Compile Include="Hooks\SoftDeleteSteps.cs" />
+    <Compile Include="Hooks\SystemInfo.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SystemInfo.feature</DependentUpon>
     </Compile>
-    <Compile Include="SystemInfoSteps.cs" />
+    <Compile Include="Hooks\SystemInfoSteps.cs" />
     <Compile Include="TestClasses\SoftDeleteData.cs" />
     <Compile Include="TestClasses\SoftDeleteRepository.cs" />
     <Compile Include="TestClasses\SystemInfoData.cs" />
@@ -100,16 +100,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="GenericRepository.feature">
+    <None Include="Repositories\GenericRepository.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GenericRepository.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
-    <None Include="SoftDelete.feature">
+    <None Include="Hooks\SoftDelete.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SoftDelete.feature.cs</LastGenOutput>
     </None>
-    <None Include="SystemInfo.feature">
+    <None Include="Hooks\SystemInfo.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SystemInfo.feature.cs</LastGenOutput>
     </None>

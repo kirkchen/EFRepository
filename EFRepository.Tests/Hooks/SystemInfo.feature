@@ -1,7 +1,66 @@
-﻿Feature: SystemInfo
-	In order to auto add system required information when store data
-	As a programmer
-	I would like to use update certain field to record system infomation
+﻿@Hook
+Feature: SystemInfo
+
+As a programmer <br />
+In order to auto assign required system information when insert or update data <br />
+I would like to use use system info hook to handle assign system infomation logic <br />
+
+1. Create data class inherits **ISystemInfo**
+		
+		public class SoftDeleteData : IEntity<int>, ISoftDelete
+		{        
+			[Key]
+			public int Id { get; set; }
+       
+			public string Content { get; set; }
+      
+			public DateTime CreatedAt { get; set; }
+
+	        public string CreatedBy { get; set; }
+
+			public DateTime UpdatedAt { get; set; }
+
+			public string UpdatedBy { get; set; }
+		}	
+
+1. Create **UserHelper** class to get current username in your system
+
+		public class UserHelper: IUserHelper
+		{
+			public string GetUserName()
+			{
+				//// Implement your system user name logic
+				return HttpContext.Current.User.Name;
+			}
+		}
+
+1. Create repository inherits **Generic repository** and register **System info hook**
+
+		public class SystemInfoRepository : GenericRepository<int, SystemInfoData>, IRepository<int, SystemInfoData>
+		{        
+			public SystemInfoRepository(MyDbContext context)
+				: base(context)
+			{
+				this.Repository.RegisterPostActionHook(new SystemInfoPostActionHook<SystemInfoData>(new UserHelper(), new DatetimeHelper()));
+			}
+		}
+
+1. Use repository
+
+		using(var dbContext = new MyDbContext())
+		{
+			var repository = new SoftDeleteRepository(dbContext);
+
+			//// Will auto update required system info field
+			repository.Add(myData);
+
+			or
+
+			//// Will auto update required system info field
+			repository.Update(myData);
+		}
+
+Below are some sceranrios for **System info hook**
 
 Scenario: Add data into database should be success and auto assign system required infomation
 	Given I have systemInfo datas

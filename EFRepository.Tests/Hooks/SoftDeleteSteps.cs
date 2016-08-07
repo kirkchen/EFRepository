@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
-namespace EFRepository.Tests
+namespace EFRepository.Tests.Hooks
 {
     [Binding]
     [Scope(Feature = "SoftDelete")]
