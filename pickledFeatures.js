@@ -8,6 +8,7 @@ jsonPWrapper ({
         "FeatureElements": [
           {
             "Name": "Add data into database should be success",
+            "Slug": "add-data-into-database-should-be-success",
             "Description": "",
             "Steps": [
               {
@@ -71,6 +72,7 @@ jsonPWrapper ({
           },
           {
             "Name": "Add datalist into database should be success",
+            "Slug": "add-datalist-into-database-should-be-success",
             "Description": "",
             "Steps": [
               {
@@ -142,6 +144,7 @@ jsonPWrapper ({
           },
           {
             "Name": "Get datalist from database should be success",
+            "Slug": "get-datalist-from-database-should-be-success",
             "Description": "",
             "Steps": [
               {
@@ -206,6 +209,7 @@ jsonPWrapper ({
           },
           {
             "Name": "Get datalist from database with condition content should contains \"2\" should be success",
+            "Slug": "get-datalist-from-database-with-condition-content-should-contains-2-should-be-success",
             "Description": "",
             "Steps": [
               {
@@ -273,6 +277,7 @@ jsonPWrapper ({
           },
           {
             "Name": "Get data from database should be success",
+            "Slug": "get-data-from-database-should-be-success",
             "Description": "",
             "Steps": [
               {
@@ -333,6 +338,7 @@ jsonPWrapper ({
           },
           {
             "Name": "Get data from database with condition content should contains \"2\" should be success",
+            "Slug": "get-data-from-database-with-condition-content-should-contains-2-should-be-success",
             "Description": "",
             "Steps": [
               {
@@ -400,6 +406,7 @@ jsonPWrapper ({
           },
           {
             "Name": "Update data which is exists in database should be success",
+            "Slug": "update-data-which-is-exists-in-database-should-be-success",
             "Description": "",
             "Steps": [
               {
@@ -490,6 +497,7 @@ jsonPWrapper ({
           },
           {
             "Name": "Delete data which is exists in database should be success",
+            "Slug": "delete-data-which-is-exists-in-database-should-be-success",
             "Description": "",
             "Steps": [
               {
@@ -577,6 +585,7 @@ jsonPWrapper ({
         "FeatureElements": [
           {
             "Name": "Add data into database should be success and auto assign system required infomation",
+            "Slug": "add-data-into-database-should-be-success-and-auto-assign-system-required-infomation",
             "Description": "",
             "Steps": [
               {
@@ -669,6 +678,7 @@ jsonPWrapper ({
           },
           {
             "Name": "Add datalist into database should be success and auto assign system required infomation",
+            "Slug": "add-datalist-into-database-should-be-success-and-auto-assign-system-required-infomation",
             "Description": "",
             "Steps": [
               {
@@ -773,6 +783,7 @@ jsonPWrapper ({
           },
           {
             "Name": "Update data which is exists in database should be success and auto assign system required infomation",
+            "Slug": "update-data-which-is-exists-in-database-should-be-success-and-auto-assign-system-required-infomation",
             "Description": "",
             "Steps": [
               {
@@ -936,6 +947,7 @@ jsonPWrapper ({
         "FeatureElements": [
           {
             "Name": "Get datalist from database should filter IsDelete=true if data is soft delete",
+            "Slug": "get-datalist-from-database-should-filter-isdeletetrue-if-data-is-soft-delete",
             "Description": "",
             "Steps": [
               {
@@ -1006,6 +1018,7 @@ jsonPWrapper ({
           },
           {
             "Name": "Get datalist from database with condition content should contains \"2\" should filter IsDelete=true if data is soft delete",
+            "Slug": "get-datalist-from-database-with-condition-content-should-contains-2-should-filter-isdeletetrue-if-data-is-soft-delete",
             "Description": "",
             "Steps": [
               {
@@ -1088,6 +1101,7 @@ jsonPWrapper ({
           },
           {
             "Name": "Get data from database should filter IsDelete=true if data is soft delete",
+            "Slug": "get-data-from-database-should-filter-isdeletetrue-if-data-is-soft-delete",
             "Description": "",
             "Steps": [
               {
@@ -1146,6 +1160,7 @@ jsonPWrapper ({
           },
           {
             "Name": "Get data from database with condition content should contains \"2\" should filter IsDelete=true if data is soft delete",
+            "Slug": "get-data-from-database-with-condition-content-should-contains-2-should-filter-isdeletetrue-if-data-is-soft-delete",
             "Description": "",
             "Steps": [
               {
@@ -1228,6 +1243,7 @@ jsonPWrapper ({
           },
           {
             "Name": "Delete data will be replaced by update IsDelete field",
+            "Slug": "delete-data-will-be-replaced-by-update-isdelete-field",
             "Description": "",
             "Steps": [
               {
@@ -1388,6 +1404,6 @@ jsonPWrapper ({
     }
   },
   "Configuration": {
-    "GeneratedOn": "7 八月 2016 22:07:01"
+    "GeneratedOn": "7 August 2016 15:08:01"
   }
 });
