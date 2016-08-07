@@ -1,0 +1,27 @@
+{
+  "name": "efrepository",
+  "version": "1.0.0",
+  "description": "Generic repository and pattern \"Unit of work\" for Entity framework",
+  "scripts": {
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kirkchen/EFRepository.git"
+  },
+  "keywords": [
+    "EF",
+    "Database",
+    "Data",
+    "Repository"
+  ],
+  "author": "Kirk Chen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kirkchen/EFRepository/issues"
+  },
+  "homepage": "https://github.com/kirkchen/EFRepository#readme",
+  "devDependencies": {
+    "conventional-changelog-cli": "^1.2.0"
+  }
+}
