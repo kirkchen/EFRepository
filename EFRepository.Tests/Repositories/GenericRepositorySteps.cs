@@ -6,7 +6,7 @@ using TechTalk.SpecFlow.Assist;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace EFRepository.Tests
+namespace EFRepository.Tests.Repositories
 {
     [Binding]
     [Scope(Feature = "GenericRepository")]
