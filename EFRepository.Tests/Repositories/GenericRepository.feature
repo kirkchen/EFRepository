@@ -1,7 +1,44 @@
-﻿Feature: GenericRepository
-	In order to reduce the work of writing repository
-	As a programmer
-	I would like to create a GenericRepository to process database related logic
+﻿@Repository
+Feature: GenericRepository
+
+As a programmer <br />
+In order to reduce the work of writing repository <br />
+I would like to create a GenericRepository to process database related logic <br />
+
+1. Create data class inherits **IEntity**
+
+		public class TestData : IEntity<int>
+		{        
+			[Key]
+			public int Id { get; set; }
+        
+	        public string Content { get; set; }
+		}
+
+1. Create repository inherits **Generic repository**
+
+		public class TestRepository : GenericRepository<int, TestData>, IRepository<int, TestData>
+		{        
+			public TestRepository(TestDbContext context)
+				: base(context)
+			{
+			}
+		}
+
+1. Use repository
+
+		using(var dbContext = new MyDbContext())
+		{
+			var repository = new TestRepository(dbContext);
+			
+			//// Support basic CRUD operation
+			var data = repository.Get(1)
+			repository.Add(myData);
+			repository.Update(myData);
+			repository.Delete(1)
+		}
+
+Below are some sceranrios for **Generic repository**
 
 Scenario: Add data into database should be success
 	Given I have test datas
