@@ -48,8 +48,8 @@ after_test:
   - ps: if ($env:APPVEYOR_PULL_REQUEST_NUMBER -Or $env:APPVEYOR_REPO_BRANCH -eq "master") { .\tools\buildfinish.bat }
   - ps: if ($env:APPVEYOR_REPO_BRANCH -eq "develop") { .\tools\packPrereleaseNuget.bat }
   - ps: if ($env:APPVEYOR_REPO_TAG -eq "true") { .\tools\packNuget.bat }
-  - .\tools\generateDocs.bat 
-  - ps: .\tools\pushDocs.ps1 $env:APPVEYOR_BUILD_FOLDER $env:GITHUB_EMAIL $env:GITHUB_USERNAME $env:GITHUB_TOKEN
+  - ps: if ($env:APPVEYOR_REPO_BRANCH -eq "master") { .\tools\generateDocs.bat } 
+  - ps: if ($env:APPVEYOR_REPO_BRANCH -eq "master") { .\tools\pushDocs.ps1 $env:APPVEYOR_BUILD_FOLDER $env:GITHUB_EMAIL $env:GITHUB_USERNAME $env:GITHUB_TOKEN }
 
 artifacts:
   - path: 'KirkChen.EFRepository*.nupkg'
