@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>EFRepository by kirkchen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">EFRepository</h1>
+      <h2 class="project-tagline">Generic repository and pattern &quot;Unit of work&quot; for Entity framework</h2>
+      <a href="https://github.com/kirkchen/EFRepository" class="btn">View on GitHub</a>
+      <a href="https://github.com/kirkchen/EFRepository/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/kirkchen/EFRepository/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="efrepository" class="anchor" href="#efrepository" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>EFRepository</h1>
+
+<p><a href="https://ci.appveyor.com/project/kirkchen/efrepository"><img src="https://ci.appveyor.com/api/projects/status/vriyn5ano6rvqarb?svg=true" alt="Build status"></a>
+<a href="https://sonarqube.com/overview?id=EFRepository"><img src="http://sonarcovbadge.epicapp.com/?server=sonarqube.com&amp;resource=EFRepository&amp;metrics=coverage&amp;ssl=true" alt="Code Coverage"></a>
+<a href="https://sonarqube.com/overview?id=EFRepository"><img src="https://img.shields.io/sonar/http/sonarqube.com/EFRepository/tech_debt.svg?maxAge=2592000" alt="Technical Debt"></a>
+<a href="https://www.nuget.org/packages/KirkChen.EFRepository/"><img src="https://img.shields.io/nuget/v/KirkChen.EFRepository.svg?maxAge=2592000" alt="NuGet"></a>
+<a href="https://www.nuget.org/packages/KirkChen.EFRepository/"><img src="https://img.shields.io/nuget/vpre/KirkChen.EFRepository.svg?maxAge=2592000" alt="NuGet Pre Release"></a></p>
+
+<p>Generic repository and pattern "Unit of work" for Entity framework</p>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li>.Net Framework 4.6.1</li>
+<li>EntityFramework 6.1.3</li>
+</ul>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>Generic Repository
+
+<ul>
+<li>Basic operation
+
+<ul>
+<li>Add</li>
+<li>Add range</li>
+<li>Get list</li>
+<li>Get list with condition</li>
+<li>Get by id</li>
+<li>Get with condition</li>
+<li>Update</li>
+<li>Delete</li>
+<li>Support generic identity</li>
+</ul>
+</li>
+<li>Asynchronous operation
+
+<ul>
+<li>Add async</li>
+<li>Add range async</li>
+<li>Get list async</li>
+<li>Get list with condition async</li>
+<li>Get by id async</li>
+<li>Get with condition async</li>
+<li>Update async</li>
+<li>Delete async<br>
+</li>
+</ul>
+</li>
+<li>Hooks Supports
+
+<ul>
+<li>Nested object save changes</li>
+<li>Soft delete</li>
+<li>Auto system infomation</li>
+<li>Audit log</li>
+<li>Global query filter</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Unit of work</li>
+</ul>
+
+<h2>
+<a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Quick Start</h2>
+
+<ol>
+<li>
+<p>Create data class with interface IEntity</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MyData</span> : <span class="pl-k">IEntity</span>&lt;<span class="pl-k">int</span>&gt;
+{        
+    [Key]
+    <span class="pl-k">public</span> <span class="pl-k">int</span> <span class="pl-en">Id</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; }
+
+    <span class="pl-k">public</span> <span class="pl-k">string</span> <span class="pl-en">Content</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; }
+}</pre></div>
+</li>
+<li>
+<p>Create dbContext</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MyDbContext</span>: <span class="pl-k">DbContext</span>
+{
+    <span class="pl-k">public</span> DbSet&lt;MyData&gt; <span class="pl-en">MyDatas</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; }
+}</pre></div>
+</li>
+<li>
+<p>Create repository for data class</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MyDataRepository</span> : <span class="pl-k">GenericRepository</span>&lt;<span class="pl-k">int</span>, <span class="pl-k">MyData</span>&gt;, <span class="pl-k">IRepository</span>&lt;<span class="pl-k">int</span>, <span class="pl-k">MyData</span>&gt;
+{
+    <span class="pl-k">public</span> <span class="pl-en">MyDataRepository</span>(<span class="pl-k">MyDbContext</span> <span class="pl-smi">context</span>)
+        : <span class="pl-c1">base</span>(context)
+    {
+        <span class="pl-c">// Enable soft delete</span>
+        <span class="pl-c1">this</span>.RegisterPostLoadHook(<span class="pl-k">new</span> SoftDeletePostLoadHook&lt;MyData&gt;());
+        <span class="pl-c1">this</span>.RegisterPostActionHook(<span class="pl-k">new</span> SoftDeletePostActionHook&lt;MyData&gt;());
+    }
+}</pre></div>
+</li>
+<li>
+<p>Use reository</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">var</span> dbContext = <span class="pl-k">new</span> MyDbContext();
+<span class="pl-k">var</span> repository = <span class="pl-k">new</span> MyDataRepository(dbContext);
+<span class="pl-k">var</span> myData = repository.Get(<span class="pl-c1">1</span>);</pre></div>
+</li>
+</ol>
+
+<h2>
+<a id="unit-of-work" class="anchor" href="#unit-of-work" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Unit of work</h2>
+
+<p>Using unit of work to handle transaction</p>
+
+<div class="highlight highlight-source-cs"><pre><span class="pl-k">using</span>(var dbContext = new MyDbContext())
+<span class="pl-k">using</span>(var unitOfWork = new UnitOfWork(dbContext))
+{
+    <span class="pl-k">var</span> repository = <span class="pl-k">new</span> MyDataRepository(dbContext);
+    repository.Add(data);
+
+    <span class="pl-k">var</span> anotherRepository = <span class="pl-k">new</span> OtherDataRepository(dbContext);
+    repository.Add(anotherdata);
+
+    unitOfWork.SaveChanges();
+}</pre></div>
+
+<h2>
+<a id="roadmap" class="anchor" href="#roadmap" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Roadmap</h2>
+
+<ul>
+<li>[ ] Generic Repository
+
+<ul>
+<li>[x] Basic operation
+
+<ul>
+<li>[x] Add</li>
+<li>[x] Add range</li>
+<li>[x] Get list</li>
+<li>[x] Get list with condition</li>
+<li>[x] Get by id</li>
+<li>[x] Get with condition</li>
+<li>[x] Update</li>
+<li>[x] Delete</li>
+<li>[x] Support generic identity</li>
+</ul>
+</li>
+<li>[ ] Asynchronous operation
+
+<ul>
+<li>[ ] Add async</li>
+<li>[ ] Add range async</li>
+<li>[ ] Get list async</li>
+<li>[ ] Get list with condition async</li>
+<li>[ ] Get by id async</li>
+<li>[ ] Get with condition async</li>
+<li>[ ] Update async</li>
+<li>[ ] Delete async<br>
+</li>
+</ul>
+</li>
+<li>[ ] Hooks Supports
+
+<ul>
+<li>[ ] Nested object save changes</li>
+<li>[x] Soft delete</li>
+<li>[x] Auto system infomation</li>
+<li>[ ] Audit log</li>
+<li>[ ] Global query filter</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>[x] Unit of work</li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/kirkchen/EFRepository">EFRepository</a> is maintained by <a href="https://github.com/kirkchen">kirkchen</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
