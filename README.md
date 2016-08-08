@@ -8,6 +8,8 @@
 
 Generic repository and pattern "Unit of work" for Entity framework
 
+[Read more samples...](https://kirkchen.github.io/EFRepository/sample.html)
+
 ## Requirements
 
 * .Net Framework 4.6.1
