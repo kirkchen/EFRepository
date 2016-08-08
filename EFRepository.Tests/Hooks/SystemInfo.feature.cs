@@ -33,7 +33,7 @@ namespace EFRepository.Tests.Hooks
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SystemInfo", "As a programmer <br />\r\nIn order to auto assign required system information when " +
                     "insert or update data <br />\r\nI would like to use use system info hook to handle" +
                     " assign system infomation logic <br />\r\n\r\n1. Create data class inherits **ISyste" +
-                    "mInfo**\r\n\t\t\r\n\t\tpublic class SoftDeleteData : IEntity<int>, ISoftDelete\r\n\t\t{     " +
+                    "mInfo**\r\n\t\t\r\n\t\tpublic class SystemInfoData : IEntity<int>, ISystemInfo\r\n\t\t{     " +
                     "   \r\n\t\t\t[Key]\r\n\t\t\tpublic int Id { get; set; }\r\n       \r\n\t\t\tpublic string Content" +
                     " { get; set; }\r\n      \r\n\t\t\tpublic DateTime CreatedAt { get; set; }\r\n\r\n\t        p" +
                     "ublic string CreatedBy { get; set; }\r\n\r\n\t\t\tpublic DateTime UpdatedAt { get; set;" +
