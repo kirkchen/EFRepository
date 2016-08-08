@@ -238,5 +238,13 @@ namespace EFRepository
 
             return result;
         }
+
+        /// <summary>
+        /// Saves the changes.
+        /// </summary>        
+        public async void SaveChangesAsync()
+        {
+            var result = await this.DbContext.SaveChangesAsync();            
+        }
     }
 }
