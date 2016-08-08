@@ -5,6 +5,7 @@
 [![Technical Debt](https://img.shields.io/sonar/http/sonarqube.com/EFRepository/tech_debt.svg?maxAge=2592000)](https://sonarqube.com/overview?id=EFRepository)
 [![NuGet](https://img.shields.io/nuget/v/KirkChen.EFRepository.svg?maxAge=2592000)](https://www.nuget.org/packages/KirkChen.EFRepository/)
 [![NuGet Pre Release](https://img.shields.io/nuget/vpre/KirkChen.EFRepository.svg?maxAge=2592000)](https://www.nuget.org/packages/KirkChen.EFRepository/)
+[![Gitter](https://badges.gitter.im/efrepository/Lobby.svg)](https://gitter.im/efrepository/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 Generic repository and pattern "Unit of work" for Entity framework
 
