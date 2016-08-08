@@ -70,4 +70,11 @@ deploy:
     artifact: /.*\.nupkg/  
     on:
       branch:       
-        - develop        
+        - develop
+
+notifications:
+  - provider: Webhook
+    url: https://webhooks.gitter.im/e/7967db8e1538fa067706
+    on_build_success: true
+    on_build_failure: true
+    on_build_status_changed: true

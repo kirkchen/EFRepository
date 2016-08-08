@@ -34,6 +34,9 @@ namespace EFRepository.Tests.Repositories
 In order to reduce the work of writing repository <br />
 I would like to create a GenericRepository to process database related logic <br />
 
+How to use?
+--------
+
 1. Create data class inherits **IEntity**
 
 		public class TestData : IEntity<int>
@@ -67,7 +70,8 @@ I would like to create a GenericRepository to process database related logic <br
 			repository.Delete(1)
 		}
 
-Below are some sceranrios for **Generic repository**", ProgrammingLanguage.CSharp, new string[] {
+Scenarios
+--------", ProgrammingLanguage.CSharp, new string[] {
                         "Repository"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -112,7 +116,7 @@ Below are some sceranrios for **Generic repository**", ProgrammingLanguage.CShar
         public virtual void AddDataIntoDatabaseShouldBeSuccess()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add data into database should be success", ((string[])(null)));
-#line 43
+#line 47
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -121,11 +125,11 @@ this.ScenarioSetup(scenarioInfo);
             table1.AddRow(new string[] {
                         "1",
                         "TestData"});
-#line 44
- testRunner.Given("I have test datas", ((string)(null)), table1, "Given ");
-#line 47
- testRunner.When("I use generic repository to add data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 48
+ testRunner.Given("I have test datas", ((string)(null)), table1, "Given ");
+#line 51
+ testRunner.When("I use generic repository to add data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 52
  testRunner.And("I save the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -134,7 +138,7 @@ this.ScenarioSetup(scenarioInfo);
             table2.AddRow(new string[] {
                         "1",
                         "TestData"});
-#line 49
+#line 53
  testRunner.Then("database should exists test datas", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -147,7 +151,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void AddDatalistIntoDatabaseShouldBeSuccess()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add datalist into database should be success", ((string[])(null)));
-#line 53
+#line 57
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -159,11 +163,11 @@ this.ScenarioSetup(scenarioInfo);
             table3.AddRow(new string[] {
                         "2",
                         "TestData 2"});
-#line 54
- testRunner.Given("I have test datas", ((string)(null)), table3, "Given ");
 #line 58
+ testRunner.Given("I have test datas", ((string)(null)), table3, "Given ");
+#line 62
  testRunner.When("I use generic repository to add datalist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 59
+#line 63
  testRunner.And("I save the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -175,7 +179,7 @@ this.ScenarioSetup(scenarioInfo);
             table4.AddRow(new string[] {
                         "2",
                         "TestData 2"});
-#line 60
+#line 64
  testRunner.Then("database should exists test datas", ((string)(null)), table4, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -188,7 +192,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void GetDatalistFromDatabaseShouldBeSuccess()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get datalist from database should be success", ((string[])(null)));
-#line 65
+#line 69
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -200,9 +204,9 @@ this.ScenarioSetup(scenarioInfo);
             table5.AddRow(new string[] {
                         "2",
                         "TestData 2"});
-#line 66
- testRunner.Given("database has test datas", ((string)(null)), table5, "Given ");
 #line 70
+ testRunner.Given("database has test datas", ((string)(null)), table5, "Given ");
+#line 74
  testRunner.When("I use generic repository get data list from database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -214,7 +218,7 @@ this.ScenarioSetup(scenarioInfo);
             table6.AddRow(new string[] {
                         "2",
                         "TestData 2"});
-#line 71
+#line 75
  testRunner.Then("the data list I get should be", ((string)(null)), table6, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -229,7 +233,7 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get datalist from database with condition content should contains \"2\" should be s" +
                     "uccess", ((string[])(null)));
-#line 76
+#line 80
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
@@ -241,11 +245,11 @@ this.ScenarioSetup(scenarioInfo);
             table7.AddRow(new string[] {
                         "2",
                         "TestData 2"});
-#line 77
- testRunner.Given("database has test datas", ((string)(null)), table7, "Given ");
 #line 81
+ testRunner.Given("database has test datas", ((string)(null)), table7, "Given ");
+#line 85
  testRunner.And("test datas content field should contains \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 82
+#line 86
  testRunner.When("I use generic repository get data list with condition from database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
@@ -254,7 +258,7 @@ this.ScenarioSetup(scenarioInfo);
             table8.AddRow(new string[] {
                         "2",
                         "TestData 2"});
-#line 83
+#line 87
  testRunner.Then("the data list I get should be", ((string)(null)), table8, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -267,7 +271,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void GetDataFromDatabaseShouldBeSuccess()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get data from database should be success", ((string[])(null)));
-#line 87
+#line 91
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
@@ -279,9 +283,9 @@ this.ScenarioSetup(scenarioInfo);
             table9.AddRow(new string[] {
                         "2",
                         "TestData 2"});
-#line 88
- testRunner.Given("database has test datas", ((string)(null)), table9, "Given ");
 #line 92
+ testRunner.Given("database has test datas", ((string)(null)), table9, "Given ");
+#line 96
  testRunner.When("I use generic repository get data from database by id \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
@@ -290,7 +294,7 @@ this.ScenarioSetup(scenarioInfo);
             table10.AddRow(new string[] {
                         "1",
                         "TestData"});
-#line 93
+#line 97
  testRunner.Then("the data list I get should be", ((string)(null)), table10, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -305,7 +309,7 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get data from database with condition content should contains \"2\" should be succe" +
                     "ss", ((string[])(null)));
-#line 97
+#line 101
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
@@ -317,11 +321,11 @@ this.ScenarioSetup(scenarioInfo);
             table11.AddRow(new string[] {
                         "2",
                         "TestData 2"});
-#line 98
- testRunner.Given("database has test datas", ((string)(null)), table11, "Given ");
 #line 102
+ testRunner.Given("database has test datas", ((string)(null)), table11, "Given ");
+#line 106
  testRunner.And("test datas content field should contains \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 103
+#line 107
  testRunner.When("I use generic repository get data from database with conditon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
@@ -330,7 +334,7 @@ this.ScenarioSetup(scenarioInfo);
             table12.AddRow(new string[] {
                         "2",
                         "TestData 2"});
-#line 104
+#line 108
  testRunner.Then("the data list I get should be", ((string)(null)), table12, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -343,7 +347,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void UpdateDataWhichIsExistsInDatabaseShouldBeSuccess()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update data which is exists in database should be success", ((string[])(null)));
-#line 108
+#line 112
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
@@ -355,7 +359,7 @@ this.ScenarioSetup(scenarioInfo);
             table13.AddRow(new string[] {
                         "2",
                         "TestData 2"});
-#line 109
+#line 113
  testRunner.Given("database has test datas", ((string)(null)), table13, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
@@ -364,11 +368,11 @@ this.ScenarioSetup(scenarioInfo);
             table14.AddRow(new string[] {
                         "1",
                         "TestData Modified"});
-#line 113
- testRunner.And("the data I want to update is", ((string)(null)), table14, "And ");
-#line 116
- testRunner.When("I use generic repository update data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 117
+ testRunner.And("the data I want to update is", ((string)(null)), table14, "And ");
+#line 120
+ testRunner.When("I use generic repository update data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 121
  testRunner.And("I save the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
@@ -380,7 +384,7 @@ this.ScenarioSetup(scenarioInfo);
             table15.AddRow(new string[] {
                         "2",
                         "TestData 2"});
-#line 118
+#line 122
  testRunner.Then("database should exists test datas", ((string)(null)), table15, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -393,7 +397,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void DeleteDataWhichIsExistsInDatabaseShouldBeSuccess()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete data which is exists in database should be success", ((string[])(null)));
-#line 123
+#line 127
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
@@ -405,11 +409,11 @@ this.ScenarioSetup(scenarioInfo);
             table16.AddRow(new string[] {
                         "2",
                         "TestData 2"});
-#line 124
- testRunner.Given("database has test datas", ((string)(null)), table16, "Given ");
 #line 128
+ testRunner.Given("database has test datas", ((string)(null)), table16, "Given ");
+#line 132
  testRunner.When("I use generic repository delete data with id \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 129
+#line 133
  testRunner.And("I save the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
@@ -418,7 +422,7 @@ this.ScenarioSetup(scenarioInfo);
             table17.AddRow(new string[] {
                         "2",
                         "TestData 2"});
-#line 130
+#line 134
  testRunner.Then("database should exists test datas", ((string)(null)), table17, "Then ");
 #line hidden
             this.ScenarioCleanup();
