@@ -17,7 +17,7 @@ Generic repository and pattern "Unit of work" for Entity framework
 
 ## Features
 
-* Generic Repository
+* [Generic Repository](https://kirkchen.github.io/EFRepository/sample.html?feature=Repositories\GenericRepository.feature)
     * Basic operation
         * Add
         * Add range
@@ -39,8 +39,8 @@ Generic repository and pattern "Unit of work" for Entity framework
         * Delete async   
     * Hooks Supports
         * Nested object save changes
-        * Soft delete
-        * Auto system infomation
+        * [Soft delete](https://kirkchen.github.io/EFRepository/sample.html?feature=Hooks\SoftDelete.feature)
+        * [Auto system infomation](https://kirkchen.github.io/EFRepository/sample.html?feature=Hooks\SystemInfo.feature)
         * Audit log
         * Global query filter
 * Unit of work
