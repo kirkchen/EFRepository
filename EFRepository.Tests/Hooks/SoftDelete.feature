@@ -5,6 +5,9 @@ As a programmer  <br />
 In order to update IsDelete property in data class instead of delete data in the database	<br />
 I would like to use soft delete hook to handle soft delete logic <br />
 
+How to use?
+--------
+
 1. Create data class inherits **ISoftDelete**
 		
 		public class SoftDeleteData : IEntity<int>, ISoftDelete
@@ -44,7 +47,8 @@ I would like to use soft delete hook to handle soft delete logic <br />
 			var myData = repository.Get(1);
 		}
 
-Below are some sceranrios for **Soft delete hook**
+Scenarios
+--------
 
 Scenario: Get datalist from database should filter IsDelete=true if data is soft delete
 	Given database has soft delete datas

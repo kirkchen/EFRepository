@@ -5,6 +5,9 @@ As a programmer <br />
 In order to auto assign required system information when insert or update data <br />
 I would like to use use system info hook to handle assign system infomation logic <br />
 
+How to use?
+--------
+
 1. Create data class inherits **ISystemInfo**
 		
 		public class SystemInfoData : IEntity<int>, ISystemInfo
@@ -60,7 +63,8 @@ I would like to use use system info hook to handle assign system infomation logi
 			repository.Update(myData);
 		}
 
-Below are some sceranrios for **System info hook**
+Scenarios
+--------
 
 Scenario: Add data into database should be success and auto assign system required infomation
 	Given I have systemInfo datas
