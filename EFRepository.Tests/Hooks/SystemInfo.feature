@@ -7,7 +7,7 @@ I would like to use use system info hook to handle assign system infomation logi
 
 1. Create data class inherits **ISystemInfo**
 		
-		public class SoftDeleteData : IEntity<int>, ISoftDelete
+		public class SystemInfoData : IEntity<int>, ISystemInfo
 		{        
 			[Key]
 			public int Id { get; set; }
