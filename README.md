@@ -47,6 +47,12 @@ Generic repository and pattern "Unit of work" for Entity framework
 
 ## Quick Start
 
+1. Install nuget package
+
+    ```
+    Install-Package KirkChen.EFRepository 
+    ```
+
 1. Create data class with interface IEntity<TKey>
 
     ``` csharp    
