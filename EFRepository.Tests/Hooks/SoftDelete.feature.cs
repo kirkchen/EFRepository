@@ -34,6 +34,9 @@ namespace EFRepository.Tests.Hooks
 In order to update IsDelete property in data class instead of delete data in the database	<br />
 I would like to use soft delete hook to handle soft delete logic <br />
 
+How to use?
+--------
+
 1. Create data class inherits **ISoftDelete**
 		
 		public class SoftDeleteData : IEntity<int>, ISoftDelete
@@ -73,7 +76,8 @@ I would like to use soft delete hook to handle soft delete logic <br />
 			var myData = repository.Get(1);
 		}
 
-Below are some sceranrios for **Soft delete hook**", ProgrammingLanguage.CSharp, new string[] {
+Scenarios
+--------", ProgrammingLanguage.CSharp, new string[] {
                         "Hook"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -118,7 +122,7 @@ Below are some sceranrios for **Soft delete hook**", ProgrammingLanguage.CSharp,
         public virtual void GetDatalistFromDatabaseShouldFilterIsDeleteTrueIfDataIsSoftDelete()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get datalist from database should filter IsDelete=true if data is soft delete", ((string[])(null)));
-#line 49
+#line 53
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -133,11 +137,11 @@ this.ScenarioSetup(scenarioInfo);
                         "2",
                         "TestData 2",
                         "false"});
-#line 50
- testRunner.Given("database has soft delete datas", ((string)(null)), table1, "Given ");
 #line 54
+ testRunner.Given("database has soft delete datas", ((string)(null)), table1, "Given ");
+#line 58
  testRunner.And("Register soft delete hook in generic repository", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 55
+#line 59
  testRunner.When("I use generic repository get data list from database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -146,7 +150,7 @@ this.ScenarioSetup(scenarioInfo);
             table2.AddRow(new string[] {
                         "2",
                         "TestData 2"});
-#line 56
+#line 60
  testRunner.Then("the data list I get should be", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -161,7 +165,7 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get datalist from database with condition content should contains \"2\" should filt" +
                     "er IsDelete=true if data is soft delete", ((string[])(null)));
-#line 60
+#line 64
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -180,13 +184,13 @@ this.ScenarioSetup(scenarioInfo);
                         "3",
                         "TestData 2",
                         "true"});
-#line 61
+#line 65
  testRunner.Given("database has soft delete datas", ((string)(null)), table3, "Given ");
-#line 66
+#line 70
  testRunner.And("test datas content field should contains \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 67
+#line 71
  testRunner.And("Register soft delete hook in generic repository", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 68
+#line 72
  testRunner.When("I use generic repository get data list with condition from database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -195,7 +199,7 @@ this.ScenarioSetup(scenarioInfo);
             table4.AddRow(new string[] {
                         "2",
                         "TestData 2"});
-#line 69
+#line 73
  testRunner.Then("the data list I get should be", ((string)(null)), table4, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -208,7 +212,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void GetDataFromDatabaseShouldFilterIsDeleteTrueIfDataIsSoftDelete()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get data from database should filter IsDelete=true if data is soft delete", ((string[])(null)));
-#line 73
+#line 77
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -223,13 +227,13 @@ this.ScenarioSetup(scenarioInfo);
                         "2",
                         "TestData 2",
                         "false"});
-#line 74
- testRunner.Given("database has soft delete datas", ((string)(null)), table5, "Given ");
 #line 78
+ testRunner.Given("database has soft delete datas", ((string)(null)), table5, "Given ");
+#line 82
  testRunner.And("Register soft delete hook in generic repository", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 79
+#line 83
  testRunner.When("I use generic repository get data from database by id \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 80
+#line 84
  testRunner.Then("the data list I get should be empty", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -244,7 +248,7 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get data from database with condition content should contains \"2\" should filter I" +
                     "sDelete=true if data is soft delete", ((string[])(null)));
-#line 82
+#line 86
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -263,13 +267,13 @@ this.ScenarioSetup(scenarioInfo);
                         "3",
                         "TestData 2",
                         "false"});
-#line 83
+#line 87
  testRunner.Given("database has soft delete datas", ((string)(null)), table6, "Given ");
-#line 88
+#line 92
  testRunner.And("test datas content field should contains \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 89
+#line 93
  testRunner.And("Register soft delete hook in generic repository", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 90
+#line 94
  testRunner.When("I use generic repository get data from database with conditon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
@@ -278,7 +282,7 @@ this.ScenarioSetup(scenarioInfo);
             table7.AddRow(new string[] {
                         "3",
                         "TestData 2"});
-#line 91
+#line 95
  testRunner.Then("the data list I get should be", ((string)(null)), table7, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -291,7 +295,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void DeleteDataWillBeReplacedByUpdateIsDeleteField()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete data will be replaced by update IsDelete field", ((string[])(null)));
-#line 95
+#line 99
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
@@ -306,13 +310,13 @@ this.ScenarioSetup(scenarioInfo);
                         "2",
                         "TestData 2",
                         "false"});
-#line 96
- testRunner.Given("database has soft delete datas", ((string)(null)), table8, "Given ");
 #line 100
+ testRunner.Given("database has soft delete datas", ((string)(null)), table8, "Given ");
+#line 104
  testRunner.And("Register soft delete hook in generic repository", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 101
+#line 105
  testRunner.When("I use generic repository delete data with id \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 102
+#line 106
  testRunner.And("I save the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
@@ -327,7 +331,7 @@ this.ScenarioSetup(scenarioInfo);
                         "2",
                         "TestData 2",
                         "false"});
-#line 103
+#line 107
  testRunner.Then("database should exists test datas", ((string)(null)), table9, "Then ");
 #line hidden
             this.ScenarioCleanup();
