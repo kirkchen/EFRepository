@@ -5,6 +5,9 @@ As a programmer <br />
 In order to reduce the work of writing repository <br />
 I would like to create a GenericRepository to process database related logic <br />
 
+How to use?
+--------
+
 1. Create data class inherits **IEntity**
 
 		public class TestData : IEntity<int>
@@ -38,7 +41,8 @@ I would like to create a GenericRepository to process database related logic <br
 			repository.Delete(1)
 		}
 
-Below are some sceranrios for **Generic repository**
+Scenarios
+--------
 
 Scenario: Add data into database should be success
 	Given I have test datas

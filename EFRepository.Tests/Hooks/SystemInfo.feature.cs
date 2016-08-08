@@ -32,25 +32,25 @@ namespace EFRepository.Tests.Hooks
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner(null, 0);
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SystemInfo", "As a programmer <br />\r\nIn order to auto assign required system information when " +
                     "insert or update data <br />\r\nI would like to use use system info hook to handle" +
-                    " assign system infomation logic <br />\r\n\r\n1. Create data class inherits **ISyste" +
-                    "mInfo**\r\n\t\t\r\n\t\tpublic class SystemInfoData : IEntity<int>, ISystemInfo\r\n\t\t{     " +
-                    "   \r\n\t\t\t[Key]\r\n\t\t\tpublic int Id { get; set; }\r\n       \r\n\t\t\tpublic string Content" +
-                    " { get; set; }\r\n      \r\n\t\t\tpublic DateTime CreatedAt { get; set; }\r\n\r\n\t        p" +
-                    "ublic string CreatedBy { get; set; }\r\n\r\n\t\t\tpublic DateTime UpdatedAt { get; set;" +
-                    " }\r\n\r\n\t\t\tpublic string UpdatedBy { get; set; }\r\n\t\t}\t\r\n\r\n1. Create **UserHelper**" +
-                    " class to get current username in your system\r\n\r\n\t\tpublic class UserHelper: IUse" +
-                    "rHelper\r\n\t\t{\r\n\t\t\tpublic string GetUserName()\r\n\t\t\t{\r\n\t\t\t\t//// Implement your syst" +
-                    "em user name logic\r\n\t\t\t\treturn HttpContext.Current.User.Name;\r\n\t\t\t}\r\n\t\t}\r\n\r\n1. C" +
-                    "reate repository inherits **Generic repository** and register **System info hook" +
-                    "**\r\n\r\n\t\tpublic class SystemInfoRepository : GenericRepository<int, SystemInfoDat" +
-                    "a>, IRepository<int, SystemInfoData>\r\n\t\t{        \r\n\t\t\tpublic SystemInfoRepositor" +
-                    "y(MyDbContext context)\r\n\t\t\t\t: base(context)\r\n\t\t\t{\r\n\t\t\t\tthis.Repository.RegisterP" +
-                    "ostActionHook(new SystemInfoPostActionHook<SystemInfoData>(new UserHelper(), new" +
-                    " DatetimeHelper()));\r\n\t\t\t}\r\n\t\t}\r\n\r\n1. Use repository\r\n\r\n\t\tusing(var dbContext = " +
-                    "new MyDbContext())\r\n\t\t{\r\n\t\t\tvar repository = new SoftDeleteRepository(dbContext)" +
-                    ";\r\n\r\n\t\t\t//// Will auto update required system info field\r\n\t\t\trepository.Add(myDa" +
-                    "ta);\r\n\r\n\t\t\tor\r\n\r\n\t\t\t//// Will auto update required system info field\r\n\t\t\treposit" +
-                    "ory.Update(myData);\r\n\t\t}\r\n\r\nBelow are some sceranrios for **System info hook**", ProgrammingLanguage.CSharp, new string[] {
+                    " assign system infomation logic <br />\r\n\r\nHow to use?\r\n--------\r\n\r\n1. Create dat" +
+                    "a class inherits **ISystemInfo**\r\n\t\t\r\n\t\tpublic class SystemInfoData : IEntity<in" +
+                    "t>, ISystemInfo\r\n\t\t{        \r\n\t\t\t[Key]\r\n\t\t\tpublic int Id { get; set; }\r\n       \r" +
+                    "\n\t\t\tpublic string Content { get; set; }\r\n      \r\n\t\t\tpublic DateTime CreatedAt { " +
+                    "get; set; }\r\n\r\n\t        public string CreatedBy { get; set; }\r\n\r\n\t\t\tpublic DateT" +
+                    "ime UpdatedAt { get; set; }\r\n\r\n\t\t\tpublic string UpdatedBy { get; set; }\r\n\t\t}\t\r\n\r" +
+                    "\n1. Create **UserHelper** class to get current username in your system\r\n\r\n\t\tpubl" +
+                    "ic class UserHelper: IUserHelper\r\n\t\t{\r\n\t\t\tpublic string GetUserName()\r\n\t\t\t{\r\n\t\t\t" +
+                    "\t//// Implement your system user name logic\r\n\t\t\t\treturn HttpContext.Current.User" +
+                    ".Name;\r\n\t\t\t}\r\n\t\t}\r\n\r\n1. Create repository inherits **Generic repository** and re" +
+                    "gister **System info hook**\r\n\r\n\t\tpublic class SystemInfoRepository : GenericRepo" +
+                    "sitory<int, SystemInfoData>, IRepository<int, SystemInfoData>\r\n\t\t{        \r\n\t\t\tp" +
+                    "ublic SystemInfoRepository(MyDbContext context)\r\n\t\t\t\t: base(context)\r\n\t\t\t{\r\n\t\t\t\t" +
+                    "this.Repository.RegisterPostActionHook(new SystemInfoPostActionHook<SystemInfoDa" +
+                    "ta>(new UserHelper(), new DatetimeHelper()));\r\n\t\t\t}\r\n\t\t}\r\n\r\n1. Use repository\r\n\r" +
+                    "\n\t\tusing(var dbContext = new MyDbContext())\r\n\t\t{\r\n\t\t\tvar repository = new SoftDe" +
+                    "leteRepository(dbContext);\r\n\r\n\t\t\t//// Will auto update required system info fiel" +
+                    "d\r\n\t\t\trepository.Add(myData);\r\n\r\n\t\t\tor\r\n\r\n\t\t\t//// Will auto update required syst" +
+                    "em info field\r\n\t\t\trepository.Update(myData);\r\n\t\t}\r\n\r\nScenarios\r\n--------", ProgrammingLanguage.CSharp, new string[] {
                         "Hook"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -97,7 +97,7 @@ namespace EFRepository.Tests.Hooks
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add data into database should be success and auto assign system required infomati" +
                     "on", ((string[])(null)));
-#line 65
+#line 69
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -106,17 +106,17 @@ this.ScenarioSetup(scenarioInfo);
             table1.AddRow(new string[] {
                         "1",
                         "TestData"});
-#line 66
- testRunner.Given("I have systemInfo datas", ((string)(null)), table1, "Given ");
-#line 69
- testRunner.And("Current user is \"John\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 70
- testRunner.And("Current datetime is \"2016/08/05 16:00:00\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 71
- testRunner.And("Register system info hook in generic repository", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 72
- testRunner.When("I use generic repository to add data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I have systemInfo datas", ((string)(null)), table1, "Given ");
 #line 73
+ testRunner.And("Current user is \"John\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 74
+ testRunner.And("Current datetime is \"2016/08/05 16:00:00\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 75
+ testRunner.And("Register system info hook in generic repository", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 76
+ testRunner.When("I use generic repository to add data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 77
  testRunner.And("I save the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -133,7 +133,7 @@ this.ScenarioSetup(scenarioInfo);
                         "John",
                         "2016/08/05 16:00:00",
                         "John"});
-#line 74
+#line 78
  testRunner.Then("database should exists test datas", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -148,7 +148,7 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add datalist into database should be success and auto assign system required info" +
                     "mation", ((string[])(null)));
-#line 78
+#line 82
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -160,17 +160,17 @@ this.ScenarioSetup(scenarioInfo);
             table3.AddRow(new string[] {
                         "2",
                         "TestData 2"});
-#line 79
- testRunner.Given("I have systemInfo datas", ((string)(null)), table3, "Given ");
 #line 83
- testRunner.And("Current user is \"John\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 84
- testRunner.And("Current datetime is \"2016/08/05 16:00:00\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 85
- testRunner.And("Register system info hook in generic repository", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 86
- testRunner.When("I use generic repository to add datalist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I have systemInfo datas", ((string)(null)), table3, "Given ");
 #line 87
+ testRunner.And("Current user is \"John\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 88
+ testRunner.And("Current datetime is \"2016/08/05 16:00:00\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 89
+ testRunner.And("Register system info hook in generic repository", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 90
+ testRunner.When("I use generic repository to add datalist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 91
  testRunner.And("I save the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -194,7 +194,7 @@ this.ScenarioSetup(scenarioInfo);
                         "John",
                         "2016/08/05 16:00:00",
                         "John"});
-#line 88
+#line 92
  testRunner.Then("database should exists test datas", ((string)(null)), table4, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -209,7 +209,7 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update data which is exists in database should be success and auto assign system " +
                     "required infomation", ((string[])(null)));
-#line 93
+#line 97
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -233,7 +233,7 @@ this.ScenarioSetup(scenarioInfo);
                         "John",
                         "2016/08/05 16:00:00",
                         "John"});
-#line 94
+#line 98
  testRunner.Given("database has systemInfo datas", ((string)(null)), table5, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -250,17 +250,17 @@ this.ScenarioSetup(scenarioInfo);
                         "John",
                         "2016/08/05 16:00:00",
                         "John"});
-#line 98
- testRunner.And("the data I want to update is", ((string)(null)), table6, "And ");
-#line 101
- testRunner.And("Current user is \"David\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 102
- testRunner.And("Current datetime is \"2016/08/06 09:00:00\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 103
- testRunner.And("Register system info hook in generic repository", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 104
- testRunner.When("I use generic repository update data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("the data I want to update is", ((string)(null)), table6, "And ");
 #line 105
+ testRunner.And("Current user is \"David\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 106
+ testRunner.And("Current datetime is \"2016/08/06 09:00:00\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 107
+ testRunner.And("Register system info hook in generic repository", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 108
+ testRunner.When("I use generic repository update data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 109
  testRunner.And("I save the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
@@ -284,7 +284,7 @@ this.ScenarioSetup(scenarioInfo);
                         "John",
                         "2016/08/05 16:00:00",
                         "John"});
-#line 106
+#line 110
  testRunner.Then("database should exists test datas", ((string)(null)), table7, "Then ");
 #line hidden
             this.ScenarioCleanup();
