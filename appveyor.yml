@@ -8,7 +8,7 @@ environment:
   GITHUB_EMAIL: rwk0119@yahoo.com.tw
   GITHUB_USERNAME: kirkchen
   GITHUB_TOKEN:
-    secure: 2twQhN/Fz0V2Bff+6mTbEgDzq0LFtGq5ydBmGvGEJG6Lv2jN3nOi+cgfQO0NsZwL
+    secure: YF0+KGcrx/A/5UkgdBvm2tPmoQtusFvzhQwxAfg64DW7qWiUXNb8yszDycqErx1h
 
 services:
   - mssql2016
